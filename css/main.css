@@ -138,6 +138,9 @@ ul {
 
 a {
   color: #868e96;
+}
+
+ul a {
   text-decoration: none;
 }
 
