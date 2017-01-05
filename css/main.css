@@ -236,6 +236,10 @@ a:hover {
        (min-resolution: 1.25dppx),
        (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
+    body {
+      background: url('../img/gda-low-poly@2x.png') bottom right no-repeat;
+    }
+
 }
 
 /* ==========================================================================
