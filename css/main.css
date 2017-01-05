@@ -99,8 +99,8 @@ body {
   margin: 0;
   padding: 0;
   background: white;
-  background: url('../img/gda-low-poly.png') bottom right no-repeat;
-  background-size: 999px 868px;
+  background: url('../img/gda-low-poly.svg') bottom left no-repeat;
+  background-size: 1000px 1000px;
 }
 
  #main {
@@ -230,6 +230,11 @@ a:hover {
     #main {
       width:50%;
     }
+
+    body {
+      background: url('../img/gda-low-poly.svg') bottom right no-repeat;
+      background-size: 1000px 1000px;
+    }
 }
 
 @media print,
@@ -237,11 +242,10 @@ a:hover {
        (min-resolution: 1.25dppx),
        (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
-    body {
+    /*body {
       background: url('../img/gda-low-poly@2x.png') bottom right no-repeat;
       background-size: 999px 868px;
-    }
-
+    }*/
 }
 
 /* ==========================================================================
