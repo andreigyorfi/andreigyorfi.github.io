@@ -1,2 +1,28 @@
+// Spacing
+
 @mixin sectionPadding
-  padding: 60px 0
+  padding: $space-huge 0
+
+// Media queries
+
+@mixin phone
+  @media (max-width: ($tablet-width - 1))
+    @content
+
+@mixin tablet
+  @media (min-width: $tablet-width) and (max-width: ($desktop-width - 1))
+    @content
+
+@mixin desktop
+  @media (min-width: $desktop-width) and (max-width: ($huge-width - 1))
+    @content
+
+@mixin huge
+  @media (min-width: $huge-width)
+    @content
+
+// Retina screens
+
+@mixin retina
+ @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+   @content

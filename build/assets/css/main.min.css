@@ -1,5 +1,5 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize * */
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,900");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500");
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -243,11 +243,11 @@ input[type="button"] {
     transform: translateY(3px); }
 
 a {
-  color: #0074D9;
+  color: blue;
   text-decoration: none;
   outline: 0; }
   a:hover, a:focus {
-    color: #F012BE; }
+    color: red; }
 
 ::selection {
   background: #FFF498; }
@@ -325,68 +325,3 @@ hr {
   clear: both;
   margin: 10px 0 30px;
   height: 0; }
-
-.flex-video {
-  height: 0;
-  margin-bottom: 0.88889rem;
-  overflow: hidden;
-  padding-bottom: 56%;
-  position: relative; }
-
-.flex-video iframe,
-.flex-video object,
-.flex-video embed,
-.flex-video video {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  left: 0; }
-
-body {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-#page-home {
-  margin: 20px;
-  display: flex; }
-
-.author {
-  margin-top: 100px; }
-  .author p {
-    margin: 0; }
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 20px 0 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0; }
-
-.wrapper-starter {
-  width: 100%;
-  max-width: 700px;
-  background: white;
-  padding: 40px;
-  border-radius: 2px;
-  border: 1px solid grey;
-  text-align: center; }
-  .wrapper-starter p {
-    color: #666; }
-
-h1 {
-  margin-bottom: 20px; }
-
-h4 {
-  margin-top: 100px; }
-
-.button {
-  margin-top: 50px;
-  border: 2px solid #0074D9;
-  color: #0074D9; }
-
-.flex-video {
-  border: 1px solid black; }
