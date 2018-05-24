@@ -1,0 +1,326 @@
+// Wrapper
+//
+// Basic wrapper for page-level constraining and wrapping elements.
+// Also, it's responsive (see: $global-mq-site-margins).
+//
+// This is an alternative to using `class="grid no-col"`.
+//
+// Furthermore, when `class="grid"` is nested inside `class="wrapper"`,
+// we obtain a grid that has additional margins.
+
+.wrapper
+  width: 100%
+  max-width: $global-max-width
+  margin: 0 auto
+  position: relative
+
+  // Responsive padding: 0 $site-margin
+  padding: 0
+  @include mq-property(padding-right, $global-mq-site-margins)
+  @include mq-property(padding-left, $global-mq-site-margins)
+
+  // background: red
+
+
+
+
+
+// Grid using flexbox
+// Also, it's responsive (see: $global-mq-gutters).
+
+.grid
+  max-width: $global-max-width
+  margin: 0 auto
+  display: flex
+  flex-flow: row
+  flex-wrap: wrap
+
+  // Responsive padding: 0 ($gutter / 2)
+  padding: 0
+  @include mq-property(padding-right, $global-mq-gutters, 1/2)
+  @include mq-property(padding-left, $global-mq-gutters, 1/2)
+
+  background: red
+
+
+.grid--center
+  justify-content: center
+
+
+.grid--right
+  justify-content: flex-end
+
+
+.grid--full
+  max-width: 100%
+
+
+
+
+
+// Columns
+
+// 1 col grid (auto width)
+.col
+  flex: 1
+
+
+[class*='col']
+  position: relative
+
+  // Responsive padding: 0 ($gutter / 2)
+  padding: 0
+  @include mq-property(padding-right, $global-mq-gutters, 1/2)
+  @include mq-property(padding-left, $global-mq-gutters, 1/2)
+
+
+// 1 col grid (100% width)
+.col-100
+  width: 100%
+  background: purple
+
+// 2 col grid
+.col-50
+  width: 50%
+  background: blue
+
+// 3 col grid
+.col-33
+  width: 33.33%
+.col-66
+  width: 66.66%
+
+// 4 col grid
+.col-25
+  width: 25%
+  background: green
+.col-75
+  width: 75%
+  background: gray
+
+
+
+
+
+// Push columns
+
+// 2 col grid
+.push-50
+  left: 50%
+
+// 3 col grid
+.push-33
+  left: 33.33%
+.push-66
+  left: 66.66%
+
+// 4 col grid
+.push-25
+  left: 25%
+.push-75
+  left: 75%
+
+
+
+
+
+// Pull columns
+
+// 2 col grid
+.pull-50
+  right: 50%
+
+// 3 col grid
+.pull-33
+  right: 33.33%
+.pull-66
+  right: 66.66%
+
+// 4 col grid
+.pull-25
+  right: 25%
+.pull-75
+  right: 75%
+
+
+
+
+
+// No padding
+
+.no-padd,
+.no-padd [class*='col-']
+  padding: 0 !important
+
+
+
+
+
+// Nested grid
+
+.grid .grid
+  padding: 0
+
+  // Responsive margin-right: -$gutter
+  @include mq-property(margin-right, $global-mq-gutters, -1)
+
+
+.grid .grid [class*='col']
+  padding-left: 0
+
+  // Responsive padding-right: $gutter
+  @include mq-property(padding-right, $global-mq-gutters)
+
+
+
+
+
+// Tablet
+// By default, the columns on tablet are the same as on desktop.
+// You can override the default width of columns on tablet by using the following classes.
+
+@include mq($from: tablet, $until: desktop)
+
+  .tab-100
+    width: 100%
+
+  .tab-75
+    width: 75%
+
+  .tab-66
+    width: 66.66%
+
+  .tab-50
+    width: 50%
+
+  .tab-33
+    width: 33.33%
+
+  .tab-25
+    width: 25%
+
+  // You can also combine the "auto" width column
+  // provided by flexbox (.col) with the tablet columns (.tab-50).
+
+  .col.tab-100
+    flex: 0 0 100%
+
+  .col.tab-75
+    flex: 0 0 75%
+
+  .col.tab-66
+    flex: 0 0 66.66%
+
+  .col.tab-50
+    flex: 0 0 50%
+
+  .col.tab-33
+    flex: 0 0 33.33%
+
+  .col.tab-25
+    flex: 0 0 25%
+
+
+
+
+
+// Mobile
+// By default, the columns on mobile are 100% of the width.
+// You can override the default width of columns on mobile by using the following classes.
+
+@include mq($until: tablet)
+
+  [class*='col']
+    width: 100%
+    left: 0
+    right: 0
+
+  .mob-100
+    width: 100%
+
+  .mob-75
+    width: 75%
+
+  .mob-66
+    width: 66.66%
+
+  .mob-50
+    width: 50%
+
+  .mob-33
+    width: 33.33%
+
+  .mob-25
+    width: 25%
+
+  // You can also combine the "auto" width column
+  // provided by flexbox (.col) with the mobile columns (.mob-50).
+
+  .col.mob-100
+    flex: 0 0 100%
+
+  .col.mob-75
+    flex: 0 0 75%
+
+  .col.mob-66
+    flex: 0 0 66.66%
+
+  .col.mob-50
+    flex: 0 0 50%
+
+  .col.mob-33
+    flex: 0 0 33.33%
+
+  .col.mob-25
+    flex: 0 0 25%
+
+
+
+
+
+// No columns, only the container
+// You can set a grid with no columns to contain any content you like.
+// This is an alternative to using `class="wrapper"`.
+
+.no-col
+  display: block
+
+  // Responsive padding: 0 $gutter
+  padding: 0
+  @include mq-property(padding-right, $global-mq-gutters)
+  @include mq-property(padding-left, $global-mq-gutters)
+
+
+
+
+
+// Grid using float
+
+// .row
+//   background: grey
+//   display: block
+//   width: 100%
+//   clear: both
+//
+// .grid
+//   background: blue
+//   // width: 100%
+//   float: left
+//
+// .col-50
+//   background: purple
+//   width: 50%
+//
+// .col-25
+//   background: green
+//   width: 25%
+//
+// .col-padd-hori
+//   padding: 0 $gutter
+//
+// .col-inner-hori
+//   margin-left: $gutter
+//   margin-right: $gutter
+//
+// .col-inner
+//   margin: $gutter

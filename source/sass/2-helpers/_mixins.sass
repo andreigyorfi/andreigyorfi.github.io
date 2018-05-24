@@ -1,28 +1,248 @@
-// Spacing
-
-@mixin sectionPadding
-  padding: $space-huge 0
-
 // Media queries
+//
+// Usage:
+// @include mq(tablet)
+// @include mq($from: tablet)
+// @include mq($until: desktop)
+// @include mq(tablet, desktop)
 
-@mixin phone
-  @media (max-width: ($tablet-width - 1))
+@mixin mq($from: false, $until: false, $breakpoints: $global-mq-breakpoints)
+  $min-width: 0
+  $max-width: 0
+  $media-query: ''
+
+  // From: this breakpoint (inclusive)
+  @if $from
+    $min-width: mq-get-breakpoint-width($from, $breakpoints)
+
+  // Until: that breakpoint (exclusive)
+  @if $until
+    $max-width: mq-get-breakpoint-width($until, $breakpoints) - 1
+
+  // Output rules inside @media queries
+  @if $min-width != 0
+    $media-query: '#{$media-query} and (min-width: #{$min-width})'
+
+  @if $max-width != 0
+    $media-query: '#{$media-query} and (max-width: #{$max-width})'
+
+  // Remove unnecessary media query prefix
+  @if $media-query != ''
+    $media-query: str-slice(unquote($media-query), 6)
+
+  // Output @media query
+  @media #{$media-query}
     @content
 
-@mixin tablet
-  @media (min-width: $tablet-width) and (max-width: ($desktop-width - 1))
-    @content
 
-@mixin desktop
-  @media (min-width: $desktop-width) and (max-width: ($huge-width - 1))
-    @content
 
-@mixin huge
-  @media (min-width: $huge-width)
-    @content
+
+
+// Shorthand mixins for the most used media queries
+
+// @mixin mobile
+//   @include mq($until: tablet)
+//     @content
+//
+// @mixin tablet
+//   @include mq($from: tablet, $until: desktop)
+//     @content
+//
+// @mixin desktop
+//   @include mq(desktop)
+//     @content
+
+
+
+
 
 // Retina screens
 
 @mixin retina
  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
    @content
+
+
+
+
+
+// Typography
+
+// Font-size
+// Generates a rem font-size (with pixel fallback) and a baseline-compatible
+// unitless line-height from a pixel font-size value.
+//
+// Usage:
+// @include font-size(18px)
+//
+// You can force a specific line-height:
+// @include font-size(16px, 1)
+//
+// You can also modify the line-height by increments, while staying on the baseline grid:
+// @include font-size(24px, $modifier: +2) // add 2 lines
+// @include font-size(24px, $modifier: -1) // substract 1 line
+
+@mixin font-size($font-size, $line-height: auto, $modifier: 0)
+  font-size: $font-size
+  font-size: ($font-size / $global-font-size) * 1rem
+
+  @if $line-height == "auto"
+
+    // Define how many grid lines each text line should span.
+    // By default, we set it to the minimum number of lines necessary
+    // in order to contain the defined font-size, +1 for some breathing room.
+    // This can be modified with the $modifier parameter.
+    $lines: ceil($font-size / $global-baseline) + $modifier + 1
+    $line-height: $lines * $global-baseline
+    line-height: $line-height / $font-size
+
+  @else
+
+    line-height: $line-height
+
+
+
+
+
+// Responsive font-size
+// Applies the above font-size mixin either directly to a number,
+// or to a predefined map of breakpoints and font-sizes.
+//
+// Usage:
+// h1
+//   @include mq-font-size($global-mq-font-sizes-h1)
+//
+// .caption
+//   @include mq-font-size(12px)
+
+@mixin mq-font-size($mq-font-sizes)
+
+  @if (type-of($mq-font-sizes) == "number")
+    @include font-size($mq-font-sizes)
+
+  @else
+
+    @if (type-of($mq-font-sizes) == "map")
+      @each $breakpoint, $font-size in $mq-font-sizes
+        @include mq($breakpoint)
+          @include font-size($font-size)
+
+    @else
+
+      @error "Parameter `#{$mq-font-sizes}` needs to be a number or a map."
+
+
+
+
+
+// Responsive property
+// For example, it can be used to set responsive spacings for our grid.
+//
+// Usage:
+// @include mq-property(padding-right, $global-mq-site-margins)
+// @include mq-property(padding-right, $global-mq-gutters, 1/2)
+// @include mq-property(margin-right, $global-mq-gutters, -1)
+
+@mixin mq-property($property, $mq-values, $ratio: 1)
+
+  @if (type-of($mq-values) == "number")
+    #{$property}: ($mq-values * $ratio)
+
+  @else
+
+    @if (type-of($mq-values) == "map")
+      @each $breakpoint, $value in $mq-values
+        @include mq($breakpoint)
+          #{$property}: ($value * $ratio)
+
+    @else
+
+      @error "Parameter `#{$mq-values}` needs to be a number or a map."
+
+
+
+
+
+// Typeset
+// Easily set multiple typographical properties in one call
+
+@mixin typeset($family: false, $weight: false, $color: false, $size: false, $lh: false, $ls: false)
+  @if $family
+    font-family: $family
+  @if $weight
+    font-weight: $weight
+  @if $color
+    color: $color
+  @if $size
+    font-size: $size
+  @if $lh
+    line-height: $lh
+  @if $ls
+    letter-spacing: $ls
+
+
+
+
+
+// Clearfix
+
+@mixin clearfix
+  &:after
+    content: "" !important
+    display: block !important
+    clear: both !important
+
+
+
+
+
+// Pseudo
+// When using ::before and ::after you'll always need these three.
+
+@mixin pseudo($display: block, $pos: absolute, $content: '')
+  content: $content
+  display: $display
+  position: $pos
+
+
+
+
+
+// Ellipsis
+// Truncates text and adds an ellipsis to represent overflow.
+//
+// Arguments:
+// `$width` represents the `max-width` for the string to respect before being truncated.
+// `$display` sets the display-value of the element.
+//
+// Usage:
+// h1
+//   @include ellipsis
+
+@mixin ellipsis($width: 100%, $display: inline-block)
+  display: $display
+  max-width: $width
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  word-wrap: normal
+
+
+
+
+
+// Responsive ratio
+// Create scalable elements (images/backgrounds) that maintain a ratio.
+// Usage:
+// div
+//   @include responsive-ratio(16, 9)
+
+@mixin responsive-ratio($x, $y, $pseudo: false)
+  $padding: unquote(($y/$x) * 100 + '%')
+  @if $pseudo
+    &:before
+      @include pseudo($pos: relative)
+      width: 100%
+      padding-top: $padding
+  @else
+    padding-top: $padding

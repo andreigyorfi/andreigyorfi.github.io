@@ -1,0 +1,93 @@
+// Utility classes
+
+// Visibility
+
+.transparent
+	opacity: 0.5
+
+.invisible
+	opacity: 0
+	transition: 0.7s
+
+.hidden, .fakefield
+	display: none !important
+
+
+
+
+
+// Text alignment
+
+.text--left
+	text-align: left
+
+.text--center, .center
+	text-align: center
+
+.text--right
+	text-align: right
+
+
+
+
+
+// When using a single font weight, use the `stress` class to
+// stress text within a paragraph.
+
+.stress
+	// color: $global-color-text-dark
+	filter: brightness(50%)
+
+
+
+
+
+// Clearfix
+
+.clearfix
+  @include clearfix
+
+
+
+
+
+// Full width
+// Use when you need a full width container in a limited width parent.
+
+.full-width
+	width: 100vw
+	position: relative
+	left: 50%
+	transform: translateX(-50%)
+	// margin-left: -50vw // Use instead of the above transform?
+
+
+
+
+// Spacings
+//
+// Utility classes to put specific spacing values onto elements.
+// The below loop will generate a suite of classes like:
+//
+// .margin-top
+// .padding-left-large
+// .margin-right-small
+// .padding
+// .padding-right-none
+// .padding-horizontal
+// .padding-vertical-small
+
+$spacing-properties: ("padding": "padding", "margin": "margin")
+
+$spacing-directions: (null: null, "-top": "-top", "-right": "-right", "-bottom": "-bottom", "-left": "-left", "-horizontal": "-left" "-right", "-vertical": "-top" "-bottom")
+
+$spacing-sizes: (null: $global-spacing-unit, "-tiny": $global-spacing-unit-tiny, "-small": $global-spacing-unit-small, "-large": $global-spacing-unit-large, "-huge": $global-spacing-unit-huge, "-gigantic": $global-spacing-unit-gigantic, "-none": 0)
+
+@each $property-namespace, $property in $spacing-properties
+	@each $direction-namespace, $direction-rules in $spacing-directions
+		@each $size-namespace, $size in $spacing-sizes
+
+			.#{$property-namespace}#{$direction-namespace}#{$size-namespace}
+
+				@each $direction in $direction-rules
+					#{$property}#{$direction}: $size !important

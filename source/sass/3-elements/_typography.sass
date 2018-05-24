@@ -1,0 +1,168 @@
+// Import typefaces
+
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500')
+
+
+
+
+
+// Default text styles
+
+html
+
+  // Set the default font-size and line-height for the entire project,
+  // sourced from our default variables. The font-size is calculated to exist
+  // in ems, the line-height is calculated to exist unitlessly.
+
+  font-size: ($global-font-size / 16px) * 1em
+  line-height: $global-line-height / $global-font-size
+
+  font-family: $global-font-sans
+  font-weight: $global-weight-regular
+
+  color: $global-color-text-dark
+  background-color: $global-color-background-light
+
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  -webkit-text-size-adjust: 100%
+
+body
+
+p
+
+em
+  font-style: italic
+
+b, strong
+  font-weight: $global-weight-medium
+
+hr
+  border-width: 0
+  border-top: $global-border-width solid currentColor
+  opacity: 0.1
+  clear: both
+  margin: $global-spacing-unit 0
+  height: 0
+
+hr.spacer
+  border-top: 1px solid transparent
+
+
+
+
+
+// Type scale
+//
+// Default text styles for headings and paragraphs. Anything more opinionated
+// than simple font-size changes should likely be applied via classes.
+//
+// See: http://csswizardry.com/2016/02/managing-typography-on-large-apps/
+
+.gigantic,
+.h1, h1
+  @include mq-font-size($global-mq-font-sizes-h1)
+
+.huge,
+.h2, h2
+  @include mq-font-size($global-mq-font-sizes-h2)
+
+.large,
+.h3, h3
+  @include mq-font-size($global-mq-font-sizes-h3)
+
+.bigger,
+.h4, h4
+  @include mq-font-size($global-mq-font-sizes-h4)
+
+.big,
+.h5, h5
+  @include mq-font-size($global-mq-font-sizes-h5)
+
+.normal,
+.h6, h6,
+.body, body
+  @include mq-font-size($global-mq-font-sizes-body)
+
+.button, button
+  @include mq-font-size($global-mq-font-sizes-button)
+
+.small, small,
+.caption
+  @include mq-font-size($global-mq-font-sizes-caption)
+
+.tiny,
+.overline
+  @include mq-font-size($global-mq-font-sizes-overline)
+
+
+
+
+
+// More opinionated text styles
+
+// Shared text styles
+
+.gigantic, .huge, .large, .bigger, .big,
+.h1, .h2, .h3, .h4, .h5,
+  word-wrap: break-word
+
+
+.gigantic, .huge,
+.h1, .h2
+  font-weight: $global-weight-regular
+
+
+.large, .bigger, .big,
+.h3, .h4, .h5, .h6,
+.button,
+.tiny, .overline
+  font-weight: $global-weight-medium
+
+
+.button,
+.tiny, .overline
+  text-transform: uppercase
+  letter-spacing: tracking(1)
+
+
+
+
+
+// Individual text styles
+
+.gigantic, .h1
+  letter-spacing: tracking(-2)
+  @include mq($until: tablet)
+    letter-spacing: tracking(-1)
+
+
+.huge, .h2
+  letter-spacing: tracking(-2)
+  @include mq($until: tablet)
+    letter-spacing: tracking(-0.5)
+
+
+.large, .h3
+  letter-spacing: tracking(-1)
+  @include mq($until: tablet)
+    letter-spacing: normal
+
+
+.bigger, .h4
+
+
+.big, .h5
+
+
+.normal, .h6, .body
+
+
+.button
+
+
+.small, .caption
+  letter-spacing: tracking(.5)
+
+
+.tiny, .overline

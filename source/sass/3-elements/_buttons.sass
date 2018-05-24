@@ -1,0 +1,90 @@
+// Buttons
+
+// Basic button styles
+
+button,
+.button
+  display: inline-block
+  text-align: center
+  text-decoration: none
+  white-space: nowrap
+  cursor: pointer
+  padding: $global-spacing-unit-small $global-spacing-unit
+  transition: $global-transition
+  border-radius: $global-radius
+  border: none
+
+  box-sizing: border-box
+  // vertical-align: middle
+  // font: inherit // Often necessary when styling inputs as buttons
+
+  &:hover,
+  &:active,
+  &:focus
+    outline: 0
+    // transform: scale(1.01)
+    transform: translateY(3px)
+    filter: brightness(125%)
+
+  &:disabled
+    opacity: 0.25
+    cursor: default
+    pointer-events: none
+
+
+
+
+
+// Style variants
+
+.button--primary
+  color: $global-color-text-light
+  background-color: $global-color-primary
+  // box-shadow: $global-shadow
+
+
+.button--secondary
+  color: $global-color-primary
+  background-color: $global-color-background-light
+
+
+.button--tertiary
+
+
+
+
+
+// Size variants
+
+.button--small
+  padding: $global-spacing-unit-tiny $global-spacing-unit-small
+
+
+.button--large
+  padding: $global-spacing-unit $global-spacing-unit-large
+
+
+
+
+
+// Ghost buttons
+// They have see-through backgrounds and are bordered.
+
+.button--ghost
+  background: none
+  border: $global-border-width solid currentColor
+  padding: ($global-spacing-unit-small - $global-border-width) ($global-spacing-unit - $global-border-width)
+
+  &.button--small
+    padding: ($global-spacing-unit-tiny - $global-border-width) ($global-spacing-unit-small - $global-border-width)
+
+  &.button--large
+    padding: ($global-spacing-unit - $global-border-width) ($global-spacing-unit-large - $global-border-width)
+
+  &.button--primary
+    color: $global-color-primary
+
+  &.button--secondary
+    color: $global-color-text-light
+
+  &.button--tertiary
