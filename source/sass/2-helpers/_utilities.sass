@@ -1,8 +1,33 @@
 //
 // Utility classes
 //
+// Contents:
+//
+// Align
+// Backgrounds
+// Borders
+// Clearfix
+// Display
+// Embed
+// Flex
+// Float
+// Position
+// Shadows
+// Sizing
+// Spacing
+// Text
+// Visibility
+// Misc
+//
+
+
+
+
 
 // Align
+//
+// Easily change the vertical alignment of inline, inline-block, inline-table,
+// and table cell elements.
 
 .align-baseline
 	vertical-align: baseline !important
@@ -25,7 +50,31 @@
 
 
 
+
+// Backgrounds
+//
+// Easily set the background of an element to any contextual class.
+// Background utilities do not set color, so in some cases you’ll want to use
+// .text-* utilities.
+
+@each $color, $value in $global-theme-colors
+	.bg-#{$color}
+		background-color: $value !important
+
+.bg-white
+	background-color: $global-color-white !important
+
+.bg-transparent
+	background-color: transparent !important
+
+
+
+
+
 // Borders
+//
+// Use border utilities to quickly style the border and border-radius of an
+// element. Great for images, buttons, or any other element.
 
 .border
 	border: $global-border-width solid $global-border-color !important
@@ -58,7 +107,14 @@
 	border-left: 0 !important
 
 
+// Border color
 
+@each $color, $value in $global-theme-colors
+	.border-#{$color}
+		border-color: $value !important
+
+.border-white
+	border-color: $global-color-white !important
 
 
 // Border radius
@@ -93,6 +149,9 @@
 
 
 // Clearfix
+//
+// Clear floated content within a container by adding .clearfix to the parent
+// element. Can also be used as a mixin.
 
 .clearfix
   @include clearfix()
@@ -102,6 +161,19 @@
 
 
 // Display
+//
+// Quickly and responsively toggle the display value of components and more with
+// these display utilities. Classes can be combined for various effects as you need.
+//
+// Display utility classes that apply to all breakpoints, from mobile to wide,
+// have no breakpoint abbreviation in them. The remaining breakpoints, however,
+// do include a breakpoint abbreviation:
+//
+// .d-{value} for smallest breakpoint
+// .d-{breakpoint}-{value} for the remaining breakpoints
+//
+// Hiding elements: for faster mobile-friendly development, use responsive display
+// classes for showing and hiding elements by device.
 
 @each $breakpoint in map-keys($global-breakpoints)
 	@include mq($from: $breakpoint)
@@ -129,8 +201,64 @@
 
 
 
+// Embed
+//
+// Create responsive video or slideshow embeds based on the width of the parent
+// by creating an intrinsic ratio that scales on any device.
+//
+// Rules are directly applied to <iframe>, <embed>, <video>, and <object>
+// elements; optionally use an explicit descendant class .embed-responsive-item
+// when you want to match the styling for other attributes.
+//
+// Aspect ratios can be customized with modifier classes.
+
+.embed-responsive
+	position: relative
+	display: block
+	width: 100%
+	padding: 0
+	overflow: hidden
+
+	&:before
+		display: block
+		content: ""
+
+	.embed-responsive-item,
+	iframe,
+	embed,
+	object,
+	video
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		width: 100%
+		height: 100%
+		border: 0
+
+
+.embed-responsive-16by9
+	&:before
+		padding-top: percentage(9 / 16)
+
+.embed-responsive-4by3
+	&:before
+		padding-top: percentage(3 / 4)
+
+.embed-responsive-1by1
+	&:before
+		padding-top: percentage(1 / 1)
+
+
+
+
+
 // Flex
+//
 // Custom styles for additional flex alignment options.
+//
+// Quickly manage the layout, alignment, and sizing of grid columns, navigation,
+// components, and more with a full suite of responsive flexbox utilities.
 
 @each $breakpoint in map-keys($global-breakpoints)
 	@include mq($from: $breakpoint)
@@ -234,7 +362,75 @@
 
 
 
+// Float
+//
+// Toggle floats on any element, across any breakpoint, using these responsive
+// float utilities.
+//
+// Note: float utilities have no effect on flex items.
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		.float#{$infix}-left
+			float: left !important
+
+		.float#{$infix}-right
+			float: right !important
+
+		.float#{$infix}-none
+			float: none !important
+
+
+
+
+
+// Position
+//
+// Use these shorthand utilities for quickly configuring the position of an element.
+
+// Common values
+// Quick positioning classes are available, though they are not responsive.
+
+$positions:	static, relative, absolute, fixed, sticky
+
+@each $position in $positions
+	.position-#{$position}
+		position: $position !important
+
+
+// Shorthand
+
+.fixed-top
+	position: fixed
+	top: 0
+	right: 0
+	left: 0
+	z-index: 1030
+
+.fixed-bottom
+	position: fixed
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 1030
+
+.sticky-top
+	@supports (position: sticky)
+		position: sticky
+		top: 0
+		z-index: 1020
+
+
+
+
+
 // Shadows
+//
+// Add or remove shadows to elements with `box-shadow` utilities.
+// Includes support for .shadow-none and three default sizes (which have
+// associated variables to match).
 
 .shadow-small
 	box-shadow: $global-box-shadow-small !important
@@ -254,6 +450,9 @@
 
 // Sizing
 // Width and height
+//
+// Easily make an element as wide or as tall (relative to its parent) with these
+// width and height utilities, which are generated from a Sass map variable.
 
 @each $property, $abbreviation in (width: w, height: h)
 	@each $value, $percentage in $global-grid-column-widths
@@ -290,7 +489,9 @@
 // .px-base
 // .py-small
 //
-// Also generates responsive breakpoint infixes.
+// Assign responsive-friendly margin or padding values to an element or a
+// subset of its sides with shorthand classes. Includes support for individual
+// properties, all properties, and vertical and horizontal properties.
 
 $spacing-properties: ("m": "margin", "p": "padding")
 
@@ -316,6 +517,8 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 
 
 // Text
+//
+// Common text utilities to control alignment, transformation, weight, and color.
 
 .text-monospace
 	font-family: $global-font-family-monospace
@@ -393,6 +596,9 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 
 
 // Visibility
+//
+// Control the visibility, without modifying the display, of elements with
+// visibility utilities.
 
 .visible
 	visibility: visible !important
@@ -411,7 +617,12 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 
 
 
+//
+// Misc
+//
 
+// Stress
+//
 // When using a single font weight, use the `stress` class to
 // stress text within a paragraph.
 
@@ -424,6 +635,7 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 
 
 // Full width
+//
 // Use when you need a full width container in a limited width parent.
 
 .full-width
