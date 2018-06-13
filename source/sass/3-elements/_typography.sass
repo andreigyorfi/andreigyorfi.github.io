@@ -1,3 +1,7 @@
+//
+// Typography
+//
+
 // Import typefaces
 
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500')
@@ -14,14 +18,14 @@ html
   // sourced from our default variables. The font-size is calculated to exist
   // in ems, the line-height is calculated to exist unitlessly.
 
-  font-size: ($global-font-size / 16px) * 1em
-  line-height: $global-line-height / $global-font-size
+  font-size: ($global-font-size-base / 16px) * 1em
+  line-height: $global-line-height-base / $global-font-size-base
 
-  font-family: $global-font-sans
-  font-weight: $global-weight-regular
+  font-family: $global-font-family-base
+  font-weight: $global-font-weight-base
 
-  color: $global-color-text-dark
-  background-color: $global-color-background-light
+  color: $global-body-color-base
+  background-color: $global-body-background-color-base
 
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
@@ -35,7 +39,7 @@ em
   font-style: italic
 
 b, strong
-  font-weight: $global-weight-medium
+  font-weight: $global-font-weight-bold
 
 hr
   border-width: 0
@@ -61,39 +65,39 @@ hr.spacer
 
 .gigantic,
 .h1, h1
-  @include mq-font-size($global-mq-font-sizes-h1)
+  @include mq-font-size($global-font-sizes-h1)
 
 .huge,
 .h2, h2
-  @include mq-font-size($global-mq-font-sizes-h2)
+  @include mq-font-size($global-font-sizes-h2)
 
 .large,
 .h3, h3
-  @include mq-font-size($global-mq-font-sizes-h3)
+  @include mq-font-size($global-font-sizes-h3)
 
 .bigger,
 .h4, h4
-  @include mq-font-size($global-mq-font-sizes-h4)
+  @include mq-font-size($global-font-sizes-h4)
 
 .big,
 .h5, h5
-  @include mq-font-size($global-mq-font-sizes-h5)
+  @include mq-font-size($global-font-sizes-h5)
 
 .normal,
 .h6, h6,
 .body, body
-  @include mq-font-size($global-mq-font-sizes-body)
+  @include mq-font-size($global-font-sizes-h6-body)
 
 .button, button
-  @include mq-font-size($global-mq-font-sizes-button)
+  @include mq-font-size($global-font-sizes-button)
 
 .small, small,
 .caption
-  @include mq-font-size($global-mq-font-sizes-caption)
+  @include mq-font-size($global-font-sizes-caption)
 
 .tiny,
 .overline
-  @include mq-font-size($global-mq-font-sizes-overline)
+  @include mq-font-size($global-font-sizes-overline)
 
 
 
@@ -110,14 +114,14 @@ hr.spacer
 
 .gigantic, .huge,
 .h1, .h2
-  font-weight: $global-weight-regular
+  font-weight: $global-font-weight-normal
 
 
 .large, .bigger, .big,
 .h3, .h4, .h5, .h6,
 .button,
 .tiny, .overline
-  font-weight: $global-weight-medium
+  font-weight: $global-font-weight-bold
 
 
 .button,
@@ -134,7 +138,7 @@ hr.spacer
 .gigantic, .h1
   letter-spacing: tracking(-2)
   @include mq($until: tablet)
-    letter-spacing: tracking(-1)
+    letter-spacing: tracking(-0.5)
 
 
 .huge, .h2
@@ -166,3 +170,20 @@ hr.spacer
 
 
 .tiny, .overline
+
+
+
+
+
+// Lists
+
+.list-unstyled,
+.list-inline
+  padding-left: 0
+  list-style: none
+
+.list-inline-item
+  display: inline-block
+
+  &:not(:last-child)
+    margin-right: $global-spacing-unit

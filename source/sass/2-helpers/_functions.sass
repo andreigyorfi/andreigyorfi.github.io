@@ -1,11 +1,29 @@
-// Media queries
-// Get a breakpoint's width.
+//
+// Functions
+//
 
-@function mq-get-breakpoint-width($name, $breakpoints: $global-mq-breakpoints)
+// Media queries
+
+// Breakpoint width
+// Get a breakpoint's width. Returns null for the smallest (first) breakpoint.
+
+@function get-breakpoint-width($name, $breakpoints: $global-breakpoints)
   @if map-has-key($breakpoints, $name)
-    @return map-get($breakpoints, $name)
+    $width: map-get($breakpoints, $name)
+    @return if($width != 0, $width, null)
   @else
     @error "Breakpoint `#{$name}` wasn't found in $breakpoints."
+
+
+
+
+// Breakpoint infix
+// Returns a blank string if smallest breakpoint, otherwise returns the name
+// with a dash in front. Useful for making responsive utilities.
+
+@function get-breakpoint-infix($name, $breakpoints: $global-breakpoints)
+  $width: get-breakpoint-width($name, $breakpoints)
+  @return if($width == null, "", "-#{$name}")
 
 
 
@@ -35,7 +53,7 @@
 // h1
 //   letter-spacing: tracking(-2)
 
-@function tracking($target, $font-size: $global-font-size)
+@function tracking($target, $font-size: $global-font-size-base)
   @if not unitless($target)
     @error "Tracking target `#{$target}` needs to be unitless."
 

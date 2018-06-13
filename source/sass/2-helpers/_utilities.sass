@@ -1,31 +1,412 @@
+//
 // Utility classes
+//
+
+// Align
+
+.align-baseline
+	vertical-align: baseline !important
+
+.align-top
+	vertical-align: top !important
+
+.align-middle
+	vertical-align: middle !important
+
+.align-bottom
+	vertical-align: bottom !important
+
+.align-text-bottom
+	vertical-align: text-bottom !important
+
+.align-text-top
+	vertical-align: text-top !important
+
+
+
+
+// Borders
+
+.border
+	border: $global-border-width solid $global-border-color !important
+
+.border-top
+	border-top: $global-border-width solid $global-border-color !important
+
+.border-right
+	border-right: $global-border-width solid $global-border-color !important
+
+.border-bottom
+	border-bottom: $global-border-width solid $global-border-color !important
+
+.border-left
+	border-left: $global-border-width solid $global-border-color !important
+
+.border-0
+	border: 0 !important
+
+.border-top-0
+	border-top: 0 !important
+
+.border-right-0
+	border-right: 0 !important
+
+.border-bottom-0
+	border-bottom: 0 !important
+
+.border-left-0
+	border-left: 0 !important
+
+
+
+
+
+// Border radius
+
+.rounded
+	border-radius: $global-radius !important
+
+.rounded-top
+	border-top-left-radius: $global-radius !important
+	border-top-right-radius: $global-radius !important
+
+.rounded-right
+	border-top-right-radius: $global-radius !important
+	border-bottom-right-radius: $global-radius !important
+
+.rounded-bottom
+	border-bottom-right-radius: $global-radius !important
+	border-bottom-left-radius: $global-radius !important
+
+.rounded-right
+	border-top-left-radius: $global-radius !important
+	border-bottom-left-radius: $global-radius !important
+
+.rounded-circle
+	border-radius: 50% !important
+
+.rounded-0
+	border-radius: 0 !important
+
+
+
+
+
+// Clearfix
+
+.clearfix
+  @include clearfix()
+
+
+
+
+
+// Display
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		.d#{$infix}-none
+			display: none !important
+
+		.d#{$infix}-inline
+			display: inline !important
+
+		.d#{$infix}-inline-block
+			display: inline-block !important
+
+		.d#{$infix}-block
+			display: block !important
+
+		.d#{$infix}-flex
+			display: flex !important
+
+		.d#{$infix}-inline-flex
+			display: inline-flex !important
+
+
+
+
+
+// Flex
+// Custom styles for additional flex alignment options.
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		// Horizontal alignment
+
+		// This defines the alignment along the main axis. It helps distribute extra
+		// free space left over when either all the flex items on a line are inflexible,
+		// or are flexible but have reached their maximum size. It also exerts some
+		// control over the alignment of items when they overflow the line.
+
+		.justify-content#{$infix}-start
+			justify-content: flex-start !important
+
+		.justify-content#{$infix}-end
+			justify-content: flex-end !important
+
+		.justify-content#{$infix}-center
+			justify-content: center !important
+
+		.justify-content#{$infix}-between
+			justify-content: space-between !important
+
+		.justify-content#{$infix}-around
+			justify-content: space-around !important
+
+		.justify-content#{$infix}-evenly
+			justify-content: space-evenly !important
+
+
+		// Vertical alignment
+
+		// This defines the default behaviour for how flex items are laid out along
+		// the cross axis on the current line. Think of it as the justify-content
+		// version for the cross-axis (perpendicular to the main-axis).
+
+		.align-items#{$infix}-start
+			align-items: flex-start !important
+
+		.align-items#{$infix}-end
+			align-items: flex-end !important
+
+		.align-items#{$infix}-center
+			align-items: center !important
+
+		.align-items#{$infix}-baseline
+			align-items: baseline !important
+
+		.align-items#{$infix}-stretch
+			align-items: stretch !important
+
+
+		// This aligns a flex container's lines within when there is extra space in
+		// the cross-axis, similar to how justify-content aligns individual items
+		// within the main-axis.
+		//
+		// Note: this property has no effect when there is only one line of flex items.
+
+		.align-content#{$infix}-start
+			align-content: flex-start !important
+
+		.align-content#{$infix}-end
+			align-content: flex-end !important
+
+		.align-content#{$infix}-center
+			align-content: center !important
+
+		.align-content#{$infix}-between
+			align-content: space-between !important
+
+		.align-content#{$infix}-around
+			align-content: space-around !important
+
+		.align-content#{$infix}-stretch
+			align-content: stretch !important
+
+
+		// This allows the default alignment (or the one specified by align-items)
+		// to be overridden for individual flex items.
+
+		.align-self#{$infix}-auto
+			align-self: auto !important
+
+		.align-self#{$infix}-start
+			align-self: flex-start !important
+
+		.align-self#{$infix}-end
+			align-self: flex-end !important
+
+		.align-self#{$infix}-center
+			align-self: center !important
+
+		.align-self#{$infix}-baseline
+			align-self: baseline !important
+
+		.align-self#{$infix}-stretch
+			align-self: stretch !important
+
+
+
+
+
+// Shadows
+
+.shadow-small
+	box-shadow: $global-box-shadow-small !important
+
+.shadow
+	box-shadow: $global-box-shadow !important
+
+.shadow-large
+	box-shadow: $global-box-shadow-large !important
+
+.shadow-none
+	box-shadow: none !important
+
+
+
+
+
+// Sizing
+// Width and height
+
+@each $property, $abbreviation in (width: w, height: h)
+	@each $value, $percentage in $global-grid-column-widths
+		.#{$abbreviation}-#{$value}
+			#{$property}: #{$percentage} !important
+
+.w-auto
+	width: auto !important
+
+.h-auto
+	height: auto !important
+
+.mw-100
+	max-width: 100% !important
+
+.mh-100
+	max-height: 100% !important
+
+
+
+
+
+// Spacing
+// Margin and padding
+//
+// Utility classes to put specific spacing values onto elements.
+// The below loop will generate a suite of classes like:
+//
+// .mt-base
+// .mr-small
+// .p-base
+// .pl-large
+// .pr-none
+// .px-base
+// .py-small
+//
+// Also generates responsive breakpoint infixes.
+
+$spacing-properties: ("m": "margin", "p": "padding")
+
+$spacing-directions: (null: null, "t": "-top", "r": "-right", "b": "-bottom", "l": "-left", "x": "-left" "-right", "y": "-top" "-bottom")
+
+$spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $global-spacing-unit-small, "-base": $global-spacing-unit, "-large": $global-spacing-unit-large, "-huge": $global-spacing-unit-huge, "-gigantic": $global-spacing-unit-gigantic, "-auto": auto)
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		@each $property-namespace, $property in $spacing-properties
+			@each $direction-namespace, $direction-rules in $spacing-directions
+				@each $size-namespace, $size in $spacing-sizes
+
+					.#{$property-namespace}#{$direction-namespace}#{$infix}#{$size-namespace}
+
+						@each $direction in $direction-rules
+							#{$property}#{$direction}: $size !important
+
+
+
+
+
+// Text
+
+.text-monospace
+	font-family: $global-font-family-monospace
+
+.text-truncate
+	@include ellipsis()
+
+
+// Responsive text alignment
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		.text#{$infix}-left
+			text-align: left !important
+
+		.text#{$infix}-center
+			text-align: center !important
+
+		.text#{$infix}-right
+			text-align: right !important
+
+
+// Text transformation
+
+.text-lowercase
+	text-transform: lowercase !important
+
+.text-uppercase
+	text-transform: uppercase !important
+
+.text-capitalize
+	text-transform: capitalize !important
+
+
+// Text weight and italics
+
+.font-weight-light
+	font-weight: $global-font-weight-light !important
+
+.font-weight-normal
+	font-weight: $global-font-weight-normal !important
+
+.font-weight-bold
+	font-weight: $global-font-weight-bold !important
+
+.font-italic
+	font-style: italic !important
+
+
+// Text colors
+
+.text-body
+	color: $global-body-color-base !important
+
+.text-white
+	color: $global-color-white !important
+
+.text-black
+	color: $global-color-black !important
+
+.text-white-50
+	color: rgba($global-color-white, .5) !important
+
+.text-black-50
+	color: rgba($global-color-black, .5) !important
+
+@each $color, $value in $global-theme-colors
+	.text-#{$color}
+		color: $value !important
+
+
+
+
 
 // Visibility
 
-.transparent
-	opacity: 0.5
+.visible
+	visibility: visible !important
 
 .invisible
-	opacity: 0
-	transition: 0.7s
+	visibility: hidden !important
 
-.hidden, .fakefield
+.transparent
+	opacity: 0.5 !important
+
+.collapsed,
+.hidden,
+.fakefield
 	display: none !important
-
-
-
-
-
-// Text alignment
-
-.text--left
-	text-align: left
-
-.text--center, .center
-	text-align: center
-
-.text--right
-	text-align: right
 
 
 
@@ -42,15 +423,6 @@
 
 
 
-// Clearfix
-
-.clearfix
-  @include clearfix
-
-
-
-
-
 // Full width
 // Use when you need a full width container in a limited width parent.
 
@@ -60,34 +432,3 @@
 	left: 50%
 	transform: translateX(-50%)
 	// margin-left: -50vw // Use instead of the above transform?
-
-
-
-
-// Spacings
-//
-// Utility classes to put specific spacing values onto elements.
-// The below loop will generate a suite of classes like:
-//
-// .margin-top
-// .padding-left-large
-// .margin-right-small
-// .padding
-// .padding-right-none
-// .padding-horizontal
-// .padding-vertical-small
-
-$spacing-properties: ("padding": "padding", "margin": "margin")
-
-$spacing-directions: (null: null, "-top": "-top", "-right": "-right", "-bottom": "-bottom", "-left": "-left", "-horizontal": "-left" "-right", "-vertical": "-top" "-bottom")
-
-$spacing-sizes: (null: $global-spacing-unit, "-tiny": $global-spacing-unit-tiny, "-small": $global-spacing-unit-small, "-large": $global-spacing-unit-large, "-huge": $global-spacing-unit-huge, "-gigantic": $global-spacing-unit-gigantic, "-none": 0)
-
-@each $property-namespace, $property in $spacing-properties
-	@each $direction-namespace, $direction-rules in $spacing-directions
-		@each $size-namespace, $size in $spacing-sizes
-
-			.#{$property-namespace}#{$direction-namespace}#{$size-namespace}
-
-				@each $direction in $direction-rules
-					#{$property}#{$direction}: $size !important

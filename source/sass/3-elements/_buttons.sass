@@ -1,6 +1,14 @@
+//
 // Buttons
+//
 
-// Basic button styles
+// See Bootstrap
+
+
+
+
+
+// Base styles
 
 button,
 .button
@@ -10,7 +18,7 @@ button,
   white-space: nowrap
   cursor: pointer
   padding: $global-spacing-unit-small $global-spacing-unit
-  transition: $global-transition
+  transition: $global-transition-base
   border-radius: $global-radius
   border: none
 
@@ -38,14 +46,14 @@ button,
 // Style variants
 
 .button--primary
-  color: $global-color-text-light
-  background-color: $global-color-primary
+  color: $global-theme-color-light
+  background-color: $global-theme-color-primary
   // box-shadow: $global-shadow
 
 
 .button--secondary
-  color: $global-color-primary
-  background-color: $global-color-background-light
+  color: $global-theme-color-primary
+  background-color: $global-theme-color-light
 
 
 .button--tertiary
@@ -82,9 +90,9 @@ button,
     padding: ($global-spacing-unit - $global-border-width) ($global-spacing-unit-large - $global-border-width)
 
   &.button--primary
-    color: $global-color-primary
+    color: $global-theme-color-primary
 
   &.button--secondary
-    color: $global-color-text-light
+    color: $global-theme-color-light
 
   &.button--tertiary
