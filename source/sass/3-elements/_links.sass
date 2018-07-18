@@ -1,10 +1,12 @@
+//
 // Links
+//
 
 // Basic link styles
 
 a
   // Anchors by default will inherit their color. To make them stand
-  // out with your primary color, use the `link` class.
+  // out with your primary color, use the `.link` class.
   color: inherit
   text-decoration: none
   outline: 0
@@ -19,7 +21,7 @@ a
 // Style variants
 
 .link
-  color: $global-color-primary
+  color: $global-theme-color-primary
 
 
 .link--bordered,
@@ -35,7 +37,7 @@ a
 
   &:hover,
   &:focus
-    background-image: linear-gradient(to bottom, lighten($global-color-text-dark, 66%), lighten($global-color-text-dark, 66%))
+    background-image: linear-gradient(to bottom, lighten($global-theme-color-dark, 66%), lighten($global-theme-color-dark, 66%))
 
 
 .link--bordered-hover

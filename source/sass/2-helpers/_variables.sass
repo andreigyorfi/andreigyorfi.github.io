@@ -1,3 +1,87 @@
+//
+// Variables
+//
+// Contents:
+//
+// Colors
+// Spacing
+// Breakpoints
+// Grid
+// Typography
+// Components
+//   Borders
+//   Radii
+//   Shadows
+//   Transitions
+// Misc
+//
+
+
+
+
+
+//
+// Colors
+//
+
+// Grayscale
+
+$global-color-white:                    #fff
+$global-color-gray-100:                 #f8f9fa
+$global-color-gray-200:                 #e9ecef
+$global-color-gray-300:                 #dee2e6
+$global-color-gray-400:                 #ced4da
+$global-color-gray-500:                 #adb5bd
+$global-color-gray-600:                 #6c757d
+$global-color-gray-700:                 #495057
+$global-color-gray-800:                 #343a40
+$global-color-gray-900:                 #212529
+$global-color-black:                    #000
+
+
+
+
+
+// Colors
+
+$global-color-blue:                     rgba(50,50,255, 1)
+$global-color-yellow-light:             #fff498
+
+
+
+
+
+// Theme colors
+
+$global-theme-color-primary:            $global-color-blue
+$global-theme-color-secondary:          $global-color-gray-600
+// $global-theme-color-success:            $global-color-green
+// $global-theme-color-info:               $global-color-cyan
+// $global-theme-color-warning:            $global-color-yellow
+// $global-theme-color-danger:             $global-color-red
+$global-theme-color-light:              $global-color-white
+$global-theme-color-dark:               $global-color-black
+
+$global-theme-colors:                   ("primary": $global-theme-color-primary, "secondary": $global-theme-color-secondary, "light": $global-theme-color-light, "dark": $global-theme-color-dark)
+
+
+
+
+
+// Base text and background colors
+
+$global-body-color-base:                $global-theme-color-dark
+$global-body-background-color-base:     $global-theme-color-light
+$global-body-color-selection:           $global-color-yellow-light
+
+
+
+
+
+//
+// Spacing
+//
+
 // Baseline grid lines height.
 // Every spacing metric should be based on this.
 
@@ -35,26 +119,81 @@ $global-spacing-unit-gigantic:          $global-baseline * $global-spacing-unit-
 
 
 
-// Colors
+//
+// Breakpoints
+//
 
-$global-color-primary:                  rgba(50,50,255, 1)
-$global-color-text-dark:                #000
-$global-color-text-light:               #fff
-$global-color-background-dark:          #000
-$global-color-background-light:         #fff
-$global-color-selection:                #fff498
+// Define the dimensions at which your layout will change, as a map of
+// (name: minimum width), order from small to large.
 
-
+$global-breakpoints:                    (mobile: 0, tablet: 740px, desktop: 980px, wide: 1200px)
 
 
 
+
+
+//
+// Grid
+//
+
+// Grid containers
+// Define the maximum width of `.container` for different screen sizes.
+
+$global-container-max-widths:           (wide: 1366px)
+// $global-container-max-widths:           (tablet: 720px, desktop: 960px, wide: 1140px)
+// $global-container-max-widths:           1410px
+
+
+
+
+
+// Grid columns
+//
+// Which fractions would you like in your grid system? By default we provide
+// fractions of one whole, halves, thirds and quarters.
+//
+// For example:
+// .col-100,
+// .col-50,
+// .col-33, .col-66
+// .col-25, .col-75
+
+$global-grid-column-widths:             (100: 100%, 75: 75%, 66: 66.66%, 50: 50%, 33: 33.33%, 25: 25%)
+
+
+
+
+
+// Grid gutters
+// Define the width of the gutters for different screen sizes.
+
+$global-grid-gutter-widths:             $global-spacing-unit
+
+// $global-grid-gutter-widths:          (mobile: $global-spacing-unit, tablet: $global-spacing-unit-large, desktop: $global-spacing-unit-huge)
+
+
+
+
+
+//
 // Typography
+//
 
-$global-font-sans:                      'IBM Plex Sans', sans-serif
-$global-weight-regular:                 400
-$global-weight-medium:                  500
+$global-font-family-sans-serif:         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
 
-// $sans:                                  (font-family: "'IBM Plex Sans', sans-serif", regular: 400, medium: 500)
+$global-font-family-monospace:          SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+
+$global-font-family-ibm-plex-sans:      "IBM Plex Sans", sans-serif
+
+$global-font-family-base:               $global-font-family-ibm-plex-sans
+
+$global-font-weight-light:              300
+$global-font-weight-normal:             400
+$global-font-weight-bold:               500
+
+$global-font-weight-base:               $global-font-weight-normal
+
+// $global-font-sans:                      (font-family: "'IBM Plex Sans', sans-serif", regular: 400, medium: 500)
 
 
 
@@ -64,9 +203,11 @@ $global-weight-medium:                  500
 // By default, we assign the base line-height to the global-spacing-unit.
 // This value then becomes the cornerstone of our UI, acting as the default
 // margin and padding value for any components that require it.
+//
+// Assumes the browser default, typically `16px`.
 
-$global-font-size:                      16px
-$global-line-height:                    $global-spacing-unit
+$global-font-size-base:                 16px
+$global-line-height-base:               $global-spacing-unit
 
 
 
@@ -90,72 +231,55 @@ $global-line-height:                    $global-spacing-unit
 // For this particular purpose, see:
 // https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/
 
-$global-mq-font-sizes-h1:               (mobile: 67px, tablet: 144px, desktop: 211px)
-$global-mq-font-sizes-h2:               (mobile: 51px, tablet: 96px,  desktop: 130px)
-$global-mq-font-sizes-h3:               (mobile: 38px, tablet: 64px,  desktop: 80px)
-$global-mq-font-sizes-h4:               (mobile: 28px, tablet: 43px,  desktop: 50px)
-$global-mq-font-sizes-h5:               (mobile: 21px, tablet: 29px,  desktop: 31px)
-$global-mq-font-sizes-body:             (mobile: 16px, tablet: 19px,  desktop: 19px)
-$global-mq-font-sizes-button:           14px
-$global-mq-font-sizes-caption:          12px
-$global-mq-font-sizes-overline:         10px
+$global-font-sizes-h1:                  (mobile: 67px, tablet: 144px, desktop: 211px)
+$global-font-sizes-h2:                  (mobile: 51px, tablet: 96px,  desktop: 130px)
+$global-font-sizes-h3:                  (mobile: 38px, tablet: 64px,  desktop: 80px)
+$global-font-sizes-h4:                  (mobile: 28px, tablet: 43px,  desktop: 50px)
+$global-font-sizes-h5:                  (mobile: 21px, tablet: 29px,  desktop: 31px)
+$global-font-sizes-h6-body:             (mobile: 16px, tablet: 19px,  desktop: 19px)
+$global-font-sizes-button:              14px
+$global-font-sizes-caption:             12px
+$global-font-sizes-overline:            10px
 
 
 
 
 
-// Max width
+//
+// Components
+//
 
-$global-max-width:                      1390px
-// $global-max-width:                      1410px
+// Borders
 
-
-
-
-
-// Breakpoints
-
-$global-mq-breakpoints:                 (mobile: 320px, tablet: 740px, desktop: 980px, wide: 1600px)
+$global-border-width:                   2px
+$global-border-color:                   $global-color-gray-300
 
 
 
 
-
-// Wrapper
-
-$global-mq-site-margins:                $global-spacing-unit
-// $global-mq-site-margins:                10px
-// $global-mq-site-margins:                (mobile: 44px, tablet: 66px, desktop: 144px)
-
-
-
-
-
-// Grid
-
-$global-mq-gutters:                     $global-spacing-unit
-
-// $global-mq-gutters:                     (mobile: $global-spacing-unit, tablet: $global-spacing-unit-large, desktop: $global-spacing-unit-huge)
-
-
-
-
-
-// Other variables
 
 // Radii
 
-$global-radius-small:                   2px
 $global-radius:                         4px
+$global-radius-small:                   2px
 $global-radius-large:                   $global-spacing-unit
 
 
 
 
 
-// Borders
+// Shadows
 
-$global-border-width:                   2px
+// Syntax:
+// box-shadow: none | h-offset v-offset blur spread color
+//
+// Usage:
+// .button
+//   box-shadow: $global-box-shadow
+
+$global-box-shadow:                     0 12px 10px -10px rgba(50,50,50, 0.2)
+$global-box-shadow-small:               $global-box-shadow
+$global-box-shadow-large:               $global-box-shadow
 
 
 
@@ -170,27 +294,16 @@ $global-border-width:                   2px
 // .button
 //   transition: $global-transition
 
-$global-transition:                     all 300ms ease-in-out
+$global-transition-base:                all 300ms ease-in-out
 
 
 
 
 
-// Shadows
-
-// Syntax:
-// box-shadow: none | h-offset v-offset blur spread color
 //
-// Usage:
-// .button
-//   box-shadow: $global-shadow
+// Misc
+//
 
-$global-shadow:                         0 12px 10px -10px rgba(50,50,50, 0.2)
-
-
-
-
-
-// Navigation
+// Navbar
 
 $global-navbar-height:                  70px
