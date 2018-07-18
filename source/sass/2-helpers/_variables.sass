@@ -1,0 +1,309 @@
+//
+// Variables
+//
+// Contents:
+//
+// Colors
+// Spacing
+// Breakpoints
+// Grid
+// Typography
+// Components
+//   Borders
+//   Radii
+//   Shadows
+//   Transitions
+// Misc
+//
+
+
+
+
+
+//
+// Colors
+//
+
+// Grayscale
+
+$global-color-white:                    #fff
+$global-color-gray-100:                 #f8f9fa
+$global-color-gray-200:                 #e9ecef
+$global-color-gray-300:                 #dee2e6
+$global-color-gray-400:                 #ced4da
+$global-color-gray-500:                 #adb5bd
+$global-color-gray-600:                 #6c757d
+$global-color-gray-700:                 #495057
+$global-color-gray-800:                 #343a40
+$global-color-gray-900:                 #212529
+$global-color-black:                    #000
+
+
+
+
+
+// Colors
+
+$global-color-blue:                     rgba(50,50,255, 1)
+$global-color-yellow-light:             #fff498
+
+
+
+
+
+// Theme colors
+
+$global-theme-color-primary:            $global-color-blue
+$global-theme-color-secondary:          $global-color-gray-600
+// $global-theme-color-success:            $global-color-green
+// $global-theme-color-info:               $global-color-cyan
+// $global-theme-color-warning:            $global-color-yellow
+// $global-theme-color-danger:             $global-color-red
+$global-theme-color-light:              $global-color-white
+$global-theme-color-dark:               $global-color-black
+
+$global-theme-colors:                   ("primary": $global-theme-color-primary, "secondary": $global-theme-color-secondary, "light": $global-theme-color-light, "dark": $global-theme-color-dark)
+
+
+
+
+
+// Base text and background colors
+
+$global-body-color-base:                $global-theme-color-dark
+$global-body-background-color-base:     $global-theme-color-light
+$global-body-color-selection:           $global-color-yellow-light
+
+
+
+
+
+//
+// Spacing
+//
+
+// Baseline grid lines height.
+// Every spacing metric should be based on this.
+
+$global-baseline:                       8px
+
+
+
+
+
+// How many grid lines should our spacing unit variants span?
+// Each value should be an unitless integer.
+
+$global-spacing-unit-factor-tiny:       1   // 8px
+$global-spacing-unit-factor-small:      2   // 16px
+$global-spacing-unit-factor:            3   // 24px
+$global-spacing-unit-factor-large:      6   // 48px
+$global-spacing-unit-factor-huge:       8   // 64px
+$global-spacing-unit-factor-gigantic:   16  // 128px
+
+
+
+
+
+// Spacing values are determined based on the project's baseline grid.
+// It's not recommended to modify the following variables.
+
+$global-spacing-unit-tiny:              $global-baseline * $global-spacing-unit-factor-tiny
+$global-spacing-unit-small:             $global-baseline * $global-spacing-unit-factor-small
+$global-spacing-unit:                   $global-baseline * $global-spacing-unit-factor
+$global-spacing-unit-large:             $global-baseline * $global-spacing-unit-factor-large
+$global-spacing-unit-huge:              $global-baseline * $global-spacing-unit-factor-huge
+$global-spacing-unit-gigantic:          $global-baseline * $global-spacing-unit-factor-gigantic
+
+
+
+
+
+//
+// Breakpoints
+//
+
+// Define the dimensions at which your layout will change, as a map of
+// (name: minimum width), order from small to large.
+
+$global-breakpoints:                    (mobile: 0, tablet: 740px, desktop: 980px, wide: 1200px)
+
+
+
+
+
+//
+// Grid
+//
+
+// Grid containers
+// Define the maximum width of `.container` for different screen sizes.
+
+$global-container-max-widths:           (wide: 1366px)
+// $global-container-max-widths:           (tablet: 720px, desktop: 960px, wide: 1140px)
+// $global-container-max-widths:           1410px
+
+
+
+
+
+// Grid columns
+//
+// Which fractions would you like in your grid system? By default we provide
+// fractions of one whole, halves, thirds and quarters.
+//
+// For example:
+// .col-100,
+// .col-50,
+// .col-33, .col-66
+// .col-25, .col-75
+
+$global-grid-column-widths:             (100: 100%, 75: 75%, 66: 66.66%, 50: 50%, 33: 33.33%, 25: 25%)
+
+
+
+
+
+// Grid gutters
+// Define the width of the gutters for different screen sizes.
+
+$global-grid-gutter-widths:             $global-spacing-unit
+
+// $global-grid-gutter-widths:          (mobile: $global-spacing-unit, tablet: $global-spacing-unit-large, desktop: $global-spacing-unit-huge)
+
+
+
+
+
+//
+// Typography
+//
+
+$global-font-family-sans-serif:         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+
+$global-font-family-monospace:          SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+
+$global-font-family-ibm-plex-sans:      "IBM Plex Sans", sans-serif
+
+$global-font-family-base:               $global-font-family-ibm-plex-sans
+
+$global-font-weight-light:              300
+$global-font-weight-normal:             400
+$global-font-weight-bold:               500
+
+$global-font-weight-base:               $global-font-weight-normal
+
+// $global-font-sans:                      (font-family: "'IBM Plex Sans', sans-serif", regular: 400, medium: 500)
+
+
+
+
+
+// Before we can do anything, we need to know the base font-size and line-height.
+// By default, we assign the base line-height to the global-spacing-unit.
+// This value then becomes the cornerstone of our UI, acting as the default
+// margin and padding value for any components that require it.
+//
+// Assumes the browser default, typically `16px`.
+
+$global-font-size-base:                 16px
+$global-line-height-base:               $global-spacing-unit
+
+
+
+
+
+// Modular type scale
+//
+// We have all of our font sizes defined here. Passing these pixel
+// values into our `mq-font-size()` and subsequently into `font-size()` mixins
+// will generate a rem-based `font-size` with a pixel fallback, as well as
+// generating a `line-height` that will sit on our baseline grid.
+//
+// Desktop: base = 19px, ratio = 1:1.618    (golden section)
+// Tablet:  base = 19px, ratio = 2:3 = 1.5  (perfect fifth)
+// Mobile:  base = 16px, ratio = 3:4 = 1.33 (perfect fourth)
+//
+// Optionally, we could also specify a `line-height` for each `font-size` within
+// the map, such as: `mobile: (font-size: 16px, line-height: auto, modifier: +2)`.
+// This would get passed to the `font-size()` mixin. However, additional logic
+// is required.
+// For this particular purpose, see:
+// https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/
+
+$global-font-sizes-h1:                  (mobile: 67px, tablet: 144px, desktop: 211px)
+$global-font-sizes-h2:                  (mobile: 51px, tablet: 96px,  desktop: 130px)
+$global-font-sizes-h3:                  (mobile: 38px, tablet: 64px,  desktop: 80px)
+$global-font-sizes-h4:                  (mobile: 28px, tablet: 43px,  desktop: 50px)
+$global-font-sizes-h5:                  (mobile: 21px, tablet: 29px,  desktop: 31px)
+$global-font-sizes-h6-body:             (mobile: 16px, tablet: 19px,  desktop: 19px)
+$global-font-sizes-button:              14px
+$global-font-sizes-caption:             12px
+$global-font-sizes-overline:            10px
+
+
+
+
+
+//
+// Components
+//
+
+// Borders
+
+$global-border-width:                   2px
+$global-border-color:                   $global-color-gray-300
+
+
+
+
+
+// Radii
+
+$global-radius:                         4px
+$global-radius-small:                   2px
+$global-radius-large:                   $global-spacing-unit
+
+
+
+
+
+// Shadows
+
+// Syntax:
+// box-shadow: none | h-offset v-offset blur spread color
+//
+// Usage:
+// .button
+//   box-shadow: $global-box-shadow
+
+$global-box-shadow:                     0 12px 10px -10px rgba(50,50,50, 0.2)
+$global-box-shadow-small:               $global-box-shadow
+$global-box-shadow-large:               $global-box-shadow
+
+
+
+
+
+// Transitions
+
+// Syntax:
+// transition: property duration timing-function delay | initial | inherit
+//
+// Usage:
+// .button
+//   transition: $global-transition
+
+$global-transition-base:                all 300ms ease-in-out
+
+
+
+
+
+//
+// Misc
+//
+
+// Navbar
+
+$global-navbar-height:                  70px

@@ -1,0 +1,23 @@
+//
+// Media object
+//
+// Useful for constructing highly repetitive components where some media is
+// positioned alongside content that doesn’t wrap around said media, like
+// blog comments, tweets, and the like.
+//
+// Only two classes are required thanks to flexbox: the wrapping .media and the
+// .media-body around your content. Optional padding and margin can be controlled
+// through spacing utilities.
+//
+// Media objects can be infinitely nested. Place nested .media within the
+// .media-body of a parent media object.
+//
+// Media list: on your <ul> or <ol>, add the .list-unstyled to remove any browser
+// default list styles, and then apply .media to your <li>s.
+
+.media
+  display: flex
+  align-items: flex-start
+
+.media-body
+  flex: 1

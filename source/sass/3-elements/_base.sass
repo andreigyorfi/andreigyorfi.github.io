@@ -1,0 +1,69 @@
+//
+// Base styles
+//
+
+html
+  // The border-box model allows us to add padding and border to our elements
+  // without increasing their size.
+  box-sizing: border-box
+
+  // Ensure the page always fills at least the entire height of the viewport.
+  min-height: 100%
+
+
+// We inherit box-sizing: border-box; from our <html> selector.
+*,
+*:before,
+*:after
+  box-sizing: inherit
+
+
+
+
+
+// Fluid images for responsive purposes.
+// Setting `vertical-align` removes the whitespace that appears under `img`
+// elements when they are dropped into a page as-is. Safer alternative to
+// using `display: block;`.
+
+// img, svg
+// 	max-width: 100%
+//   vertical-align: middle
+
+// If a `width` and/or `height` attribute has been explicitly defined,
+// let's not make the image fluid.
+
+// img[width],
+// img[height]
+//   max-width: none
+
+// Set svg's to have the color of the text
+
+svg
+  fill: currentColor
+
+
+
+
+
+// Always declare margins in the same direction:
+// csswizardry.com/2012/06/single-direction-margin-declarations
+
+address,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, ol, ul,
+figure,
+hr,
+table,
+fieldset
+  margin-bottom: $global-spacing-unit
+
+
+
+
+
+// Consistent indentation for lists
+
+dd, ol, ul
+  margin-left: $global-spacing-unit

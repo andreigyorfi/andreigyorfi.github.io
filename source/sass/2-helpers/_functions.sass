@@ -1,0 +1,60 @@
+//
+// Functions
+//
+
+// Media queries
+
+// Breakpoint width
+// Get a breakpoint's width. Returns null for the smallest (first) breakpoint.
+
+@function get-breakpoint-width($name, $breakpoints: $global-breakpoints)
+  @if map-has-key($breakpoints, $name)
+    $width: map-get($breakpoints, $name)
+    @return if($width != 0, $width, null)
+  @else
+    @error "Breakpoint `#{$name}` wasn't found in $breakpoints."
+
+
+
+
+// Breakpoint infix
+// Returns a blank string if smallest breakpoint, otherwise returns the name
+// with a dash in front. Useful for making responsive utilities.
+
+@function get-breakpoint-infix($name, $breakpoints: $global-breakpoints)
+  $width: get-breakpoint-width($name, $breakpoints)
+  @return if($width == null, "", "-#{$name}")
+
+
+
+
+
+// Strip unit
+// Remove the unit of a length.
+// In order to have 1 of the unit of $number, we multiply $number by 0 and then add 1.
+
+@function strip-unit($number)
+  @return ($number / ($number * 0 + 1))
+
+
+
+
+
+// Tracking
+// Convert tracking from Sketch into letter spacing expressed in rem.
+//
+// Formula:
+// (Tracking from Sketch / font size in px) = letter spacing
+//
+// Example:
+// (.2 tracking / 16px font size) = 0.0125 rem
+//
+// Usage:
+// h1
+//   letter-spacing: tracking(-2)
+
+@function tracking($target, $font-size: $global-font-size-base)
+  @if not unitless($target)
+    @error "Tracking target `#{$target}` needs to be unitless."
+
+  @return ($target / strip-unit($font-size)) * 1rem

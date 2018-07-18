@@ -1,0 +1,646 @@
+//
+// Utility classes
+//
+// Contents:
+//
+// Align
+// Backgrounds
+// Borders
+// Clearfix
+// Display
+// Embed
+// Flex
+// Float
+// Position
+// Shadows
+// Sizing
+// Spacing
+// Text
+// Visibility
+// Misc
+//
+
+
+
+
+
+// Align
+//
+// Easily change the vertical alignment of inline, inline-block, inline-table,
+// and table cell elements.
+
+.align-baseline
+	vertical-align: baseline !important
+
+.align-top
+	vertical-align: top !important
+
+.align-middle
+	vertical-align: middle !important
+
+.align-bottom
+	vertical-align: bottom !important
+
+.align-text-bottom
+	vertical-align: text-bottom !important
+
+.align-text-top
+	vertical-align: text-top !important
+
+
+
+
+
+// Backgrounds
+//
+// Easily set the background of an element to any contextual class.
+// Background utilities do not set color, so in some cases you’ll want to use
+// .text-* utilities.
+
+@each $color, $value in $global-theme-colors
+	.bg-#{$color}
+		background-color: $value !important
+
+.bg-white
+	background-color: $global-color-white !important
+
+.bg-transparent
+	background-color: transparent !important
+
+
+
+
+
+// Borders
+//
+// Use border utilities to quickly style the border and border-radius of an
+// element. Great for images, buttons, or any other element.
+
+.border
+	border: $global-border-width solid $global-border-color !important
+
+.border-top
+	border-top: $global-border-width solid $global-border-color !important
+
+.border-right
+	border-right: $global-border-width solid $global-border-color !important
+
+.border-bottom
+	border-bottom: $global-border-width solid $global-border-color !important
+
+.border-left
+	border-left: $global-border-width solid $global-border-color !important
+
+.border-0
+	border: 0 !important
+
+.border-top-0
+	border-top: 0 !important
+
+.border-right-0
+	border-right: 0 !important
+
+.border-bottom-0
+	border-bottom: 0 !important
+
+.border-left-0
+	border-left: 0 !important
+
+
+// Border color
+
+@each $color, $value in $global-theme-colors
+	.border-#{$color}
+		border-color: $value !important
+
+.border-white
+	border-color: $global-color-white !important
+
+
+// Border radius
+
+.rounded
+	border-radius: $global-radius !important
+
+.rounded-top
+	border-top-left-radius: $global-radius !important
+	border-top-right-radius: $global-radius !important
+
+.rounded-right
+	border-top-right-radius: $global-radius !important
+	border-bottom-right-radius: $global-radius !important
+
+.rounded-bottom
+	border-bottom-right-radius: $global-radius !important
+	border-bottom-left-radius: $global-radius !important
+
+.rounded-right
+	border-top-left-radius: $global-radius !important
+	border-bottom-left-radius: $global-radius !important
+
+.rounded-circle
+	border-radius: 50% !important
+
+.rounded-0
+	border-radius: 0 !important
+
+
+
+
+
+// Clearfix
+//
+// Clear floated content within a container by adding .clearfix to the parent
+// element. Can also be used as a mixin.
+
+.clearfix
+  @include clearfix()
+
+
+
+
+
+// Display
+//
+// Quickly and responsively toggle the display value of components and more with
+// these display utilities. Classes can be combined for various effects as you need.
+//
+// Display utility classes that apply to all breakpoints, from mobile to wide,
+// have no breakpoint abbreviation in them. The remaining breakpoints, however,
+// do include a breakpoint abbreviation:
+//
+// .d-{value} for smallest breakpoint
+// .d-{breakpoint}-{value} for the remaining breakpoints
+//
+// Hiding elements: for faster mobile-friendly development, use responsive display
+// classes for showing and hiding elements by device.
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		.d#{$infix}-none
+			display: none !important
+
+		.d#{$infix}-inline
+			display: inline !important
+
+		.d#{$infix}-inline-block
+			display: inline-block !important
+
+		.d#{$infix}-block
+			display: block !important
+
+		.d#{$infix}-flex
+			display: flex !important
+
+		.d#{$infix}-inline-flex
+			display: inline-flex !important
+
+
+
+
+
+// Embed
+//
+// Create responsive video or slideshow embeds based on the width of the parent
+// by creating an intrinsic ratio that scales on any device.
+//
+// Rules are directly applied to <iframe>, <embed>, <video>, and <object>
+// elements; optionally use an explicit descendant class .embed-responsive-item
+// when you want to match the styling for other attributes.
+//
+// Aspect ratios can be customized with modifier classes.
+
+.embed-responsive
+	position: relative
+	display: block
+	width: 100%
+	padding: 0
+	overflow: hidden
+
+	&:before
+		display: block
+		content: ""
+
+	.embed-responsive-item,
+	iframe,
+	embed,
+	object,
+	video
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		width: 100%
+		height: 100%
+		border: 0
+
+
+.embed-responsive-16by9
+	&:before
+		padding-top: percentage(9 / 16)
+
+.embed-responsive-4by3
+	&:before
+		padding-top: percentage(3 / 4)
+
+.embed-responsive-1by1
+	&:before
+		padding-top: percentage(1 / 1)
+
+
+
+
+
+// Flex
+//
+// Custom styles for additional flex alignment options.
+//
+// Quickly manage the layout, alignment, and sizing of grid columns, navigation,
+// components, and more with a full suite of responsive flexbox utilities.
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		// Horizontal alignment
+
+		// This defines the alignment along the main axis. It helps distribute extra
+		// free space left over when either all the flex items on a line are inflexible,
+		// or are flexible but have reached their maximum size. It also exerts some
+		// control over the alignment of items when they overflow the line.
+
+		.justify-content#{$infix}-start
+			justify-content: flex-start !important
+
+		.justify-content#{$infix}-end
+			justify-content: flex-end !important
+
+		.justify-content#{$infix}-center
+			justify-content: center !important
+
+		.justify-content#{$infix}-between
+			justify-content: space-between !important
+
+		.justify-content#{$infix}-around
+			justify-content: space-around !important
+
+		.justify-content#{$infix}-evenly
+			justify-content: space-evenly !important
+
+
+		// Vertical alignment
+
+		// This defines the default behaviour for how flex items are laid out along
+		// the cross axis on the current line. Think of it as the justify-content
+		// version for the cross-axis (perpendicular to the main-axis).
+
+		.align-items#{$infix}-start
+			align-items: flex-start !important
+
+		.align-items#{$infix}-end
+			align-items: flex-end !important
+
+		.align-items#{$infix}-center
+			align-items: center !important
+
+		.align-items#{$infix}-baseline
+			align-items: baseline !important
+
+		.align-items#{$infix}-stretch
+			align-items: stretch !important
+
+
+		// This aligns a flex container's lines within when there is extra space in
+		// the cross-axis, similar to how justify-content aligns individual items
+		// within the main-axis.
+		//
+		// Note: this property has no effect when there is only one line of flex items.
+
+		.align-content#{$infix}-start
+			align-content: flex-start !important
+
+		.align-content#{$infix}-end
+			align-content: flex-end !important
+
+		.align-content#{$infix}-center
+			align-content: center !important
+
+		.align-content#{$infix}-between
+			align-content: space-between !important
+
+		.align-content#{$infix}-around
+			align-content: space-around !important
+
+		.align-content#{$infix}-stretch
+			align-content: stretch !important
+
+
+		// This allows the default alignment (or the one specified by align-items)
+		// to be overridden for individual flex items.
+
+		.align-self#{$infix}-auto
+			align-self: auto !important
+
+		.align-self#{$infix}-start
+			align-self: flex-start !important
+
+		.align-self#{$infix}-end
+			align-self: flex-end !important
+
+		.align-self#{$infix}-center
+			align-self: center !important
+
+		.align-self#{$infix}-baseline
+			align-self: baseline !important
+
+		.align-self#{$infix}-stretch
+			align-self: stretch !important
+
+
+
+
+
+// Float
+//
+// Toggle floats on any element, across any breakpoint, using these responsive
+// float utilities.
+//
+// Note: float utilities have no effect on flex items.
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		.float#{$infix}-left
+			float: left !important
+
+		.float#{$infix}-right
+			float: right !important
+
+		.float#{$infix}-none
+			float: none !important
+
+
+
+
+
+// Position
+//
+// Use these shorthand utilities for quickly configuring the position of an element.
+
+// Common values
+// Quick positioning classes are available, though they are not responsive.
+
+$positions:	static, relative, absolute, fixed, sticky
+
+@each $position in $positions
+	.position-#{$position}
+		position: $position !important
+
+
+// Shorthand
+
+.fixed-top
+	position: fixed
+	top: 0
+	right: 0
+	left: 0
+	z-index: 1030
+
+.fixed-bottom
+	position: fixed
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 1030
+
+.sticky-top
+	@supports (position: sticky)
+		position: sticky
+		top: 0
+		z-index: 1020
+
+
+
+
+
+// Shadows
+//
+// Add or remove shadows to elements with `box-shadow` utilities.
+// Includes support for .shadow-none and three default sizes (which have
+// associated variables to match).
+
+.shadow-small
+	box-shadow: $global-box-shadow-small !important
+
+.shadow
+	box-shadow: $global-box-shadow !important
+
+.shadow-large
+	box-shadow: $global-box-shadow-large !important
+
+.shadow-none
+	box-shadow: none !important
+
+
+
+
+
+// Sizing
+// Width and height
+//
+// Easily make an element as wide or as tall (relative to its parent) with these
+// width and height utilities, which are generated from a Sass map variable.
+
+@each $property, $abbreviation in (width: w, height: h)
+	@each $value, $percentage in $global-grid-column-widths
+		.#{$abbreviation}-#{$value}
+			#{$property}: #{$percentage} !important
+
+.w-auto
+	width: auto !important
+
+.h-auto
+	height: auto !important
+
+.mw-100
+	max-width: 100% !important
+
+.mh-100
+	max-height: 100% !important
+
+
+
+
+
+// Spacing
+// Margin and padding
+//
+// Utility classes to put specific spacing values onto elements.
+// The below loop will generate a suite of classes like:
+//
+// .mt-base
+// .mr-small
+// .p-base
+// .pl-large
+// .pr-none
+// .px-base
+// .py-small
+//
+// Assign responsive-friendly margin or padding values to an element or a
+// subset of its sides with shorthand classes. Includes support for individual
+// properties, all properties, and vertical and horizontal properties.
+
+$spacing-properties: ("m": "margin", "p": "padding")
+
+$spacing-directions: (null: null, "t": "-top", "r": "-right", "b": "-bottom", "l": "-left", "x": "-left" "-right", "y": "-top" "-bottom")
+
+$spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $global-spacing-unit-small, "-base": $global-spacing-unit, "-large": $global-spacing-unit-large, "-huge": $global-spacing-unit-huge, "-gigantic": $global-spacing-unit-gigantic, "-auto": auto)
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		@each $property-namespace, $property in $spacing-properties
+			@each $direction-namespace, $direction-rules in $spacing-directions
+				@each $size-namespace, $size in $spacing-sizes
+
+					.#{$property-namespace}#{$direction-namespace}#{$infix}#{$size-namespace}
+
+						@each $direction in $direction-rules
+							#{$property}#{$direction}: $size !important
+
+
+
+
+
+// Text
+//
+// Common text utilities to control alignment, transformation, weight, and color.
+
+.text-monospace
+	font-family: $global-font-family-monospace
+
+.text-truncate
+	@include ellipsis()
+
+
+// Responsive text alignment
+
+@each $breakpoint in map-keys($global-breakpoints)
+	@include mq($from: $breakpoint)
+		$infix: get-breakpoint-infix($breakpoint)
+
+		.text#{$infix}-left
+			text-align: left !important
+
+		.text#{$infix}-center
+			text-align: center !important
+
+		.text#{$infix}-right
+			text-align: right !important
+
+
+// Text transformation
+
+.text-lowercase
+	text-transform: lowercase !important
+
+.text-uppercase
+	text-transform: uppercase !important
+
+.text-capitalize
+	text-transform: capitalize !important
+
+
+// Text weight and italics
+
+.font-weight-light
+	font-weight: $global-font-weight-light !important
+
+.font-weight-normal
+	font-weight: $global-font-weight-normal !important
+
+.font-weight-bold
+	font-weight: $global-font-weight-bold !important
+
+.font-italic
+	font-style: italic !important
+
+
+// Text colors
+
+.text-body
+	color: $global-body-color-base !important
+
+.text-white
+	color: $global-color-white !important
+
+.text-black
+	color: $global-color-black !important
+
+.text-white-50
+	color: rgba($global-color-white, .5) !important
+
+.text-black-50
+	color: rgba($global-color-black, .5) !important
+
+@each $color, $value in $global-theme-colors
+	.text-#{$color}
+		color: $value !important
+
+
+
+
+
+// Visibility
+//
+// Control the visibility, without modifying the display, of elements with
+// visibility utilities.
+
+.visible
+	visibility: visible !important
+
+.invisible
+	visibility: hidden !important
+
+.transparent
+	opacity: 0.5 !important
+
+.collapsed,
+.hidden,
+.fakefield
+	display: none !important
+
+
+
+
+//
+// Misc
+//
+
+// Stress
+//
+// When using a single font weight, use the `stress` class to
+// stress text within a paragraph.
+
+.stress
+	// color: $global-color-text-dark
+	filter: brightness(50%)
+
+
+
+
+
+// Full width
+//
+// Use when you need a full width container in a limited width parent.
+
+.full-width
+	width: 100vw
+	position: relative
+	left: 50%
+	transform: translateX(-50%)
+	// margin-left: -50vw // Use instead of the above transform?

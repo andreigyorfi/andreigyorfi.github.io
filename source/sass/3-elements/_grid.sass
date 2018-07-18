@@ -1,0 +1,133 @@
+//
+// Grid system
+//
+
+// Containers
+
+// Container: use for fixed width layouts.
+// Fluid container: use for fluid, full width layouts.
+
+.container,
+.container-fluid
+  width: 100%
+  @include mq-property(padding-right, $global-grid-gutter-widths, 1/2)
+  @include mq-property(padding-left, $global-grid-gutter-widths, 1/2)
+  margin-right: auto
+  margin-left: auto
+
+
+.container
+  @include mq-property(max-width, $global-container-max-widths)
+
+
+
+
+
+// Row
+// Rows contain and clear the floats of your columns.
+
+.row
+  display: flex
+  flex-wrap: wrap
+  @include mq-property(margin-right, $global-grid-gutter-widths, -1/2)
+  @include mq-property(margin-left, $global-grid-gutter-widths, -1/2)
+
+
+
+
+
+// Remove the negative margin from default .row, then the horizontal padding
+// from all immediate children columns (to prevent runaway style inheritance).
+
+.no-gutters
+  margin-right: 0
+  margin-left: 0
+
+  > .col,
+  > [class*="col-"]
+    padding-right: 0
+    padding-left: 0
+
+
+
+
+
+// Columns
+
+// Common properties for all columns and breakpoints.
+// Allow columns to stretch full width below their breakpoints.
+
+.col,
+[class*="col-"]
+  position: relative
+  width: 100%
+  min-height: 1px
+  @include mq-property(padding-right, $global-grid-gutter-widths, 1/2)
+  @include mq-property(padding-left, $global-grid-gutter-widths, 1/2)
+
+
+
+
+
+// Generate column classes
+//
+// For grids that are the same from the smallest of devices to the largest, use
+// the `.col` and `.col-*` classes. Specify a width-based class when you need a
+// particularly sized column; otherwise, feel free to stick to `.col`.
+
+@each $breakpoint in map-keys($global-breakpoints)
+
+  $infix: get-breakpoint-infix($breakpoint)
+
+  @include mq($from: $breakpoint)
+
+    // Auto-layout columns
+
+    // Equal-width columns
+    // Provide basic `.col-{breakpoint}` classes for equal-width flexbox columns.
+    // Break them into multiple lines with `.w-100`. Make the breaks responsive
+    // by mixing the `.w-100` with some responsive display utilities.
+
+    .col#{$infix}
+      flex-basis: 0
+      flex-grow: 1
+      max-width: 100%
+
+
+    // Variable-width content
+    // Use `col-{breakpoint}-auto` classes to size columns based on the natural
+    // width of their content.
+
+    .col#{$infix}-auto
+      flex: 0 0 auto
+      width: auto
+      max-width: none
+
+
+    @each $width, $percentage in $global-grid-column-widths
+
+      // Fixed-width columns
+
+      .col#{$infix}-#{$width}
+        flex: 0 0 $percentage
+        max-width: $percentage
+
+      // Offset columns by a certain width
+      // Offsetting by the width of an entire row isn't possible. Use 0 instead.
+
+      @if ($width == 100)
+        .offset#{$infix}-0
+          margin-left: 0
+      @else
+        .offset#{$infix}-#{$width}
+          margin-left: $percentage
+
+
+    // Column order
+
+    .order#{$infix}-first
+      order: -1
+
+    .order#{$infix}-last
+      // order: 1
+      order: 13
