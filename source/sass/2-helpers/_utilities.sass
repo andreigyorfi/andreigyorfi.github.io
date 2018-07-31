@@ -634,13 +634,15 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 
 
 
-// Full width
+// Break out
 //
-// Use when you need a full width container in a limited width parent.
+// Use when you need a full width container which breaks out of a limited
+// width parent.
 
-.full-width
+.break-out
 	width: 100vw
 	position: relative
-	left: 50%
-	transform: translateX(-50%)
+	left: calc(-1 * (100vw - 100%) / 2)
+	// left: 50%
+	// transform: translateX(-50%)
 	// margin-left: -50vw // Use instead of the above transform?

@@ -2,8 +2,10 @@
 // Mixins
 //
 
+//
 // Media queries
 //
+
 // Usage:
 // @include mq(tablet)
 // @include mq($from: tablet)
@@ -43,9 +45,12 @@
 
 
 
+//
 // Typography
+//
 
 // Font-size
+//
 // Generates a rem font-size (with pixel fallback) and a baseline-compatible
 // unitless line-height from a pixel font-size value.
 //
@@ -82,6 +87,7 @@
 
 
 // Responsive font-size
+//
 // Applies the above font-size mixin either directly to a number,
 // or to a predefined map of breakpoints and font-sizes.
 //
@@ -113,6 +119,7 @@
 
 
 // Responsive property
+//
 // For example, it can be used to set responsive spacings for our grid.
 //
 // Usage:
@@ -141,7 +148,8 @@
 
 
 // Typeset
-// Easily set multiple typographical properties in one call
+//
+// Easily set multiple typographical properties in one call.
 
 @mixin typeset($family: false, $weight: false, $color: false, $size: false, $lh: false, $ls: false)
   @if $family
@@ -174,6 +182,7 @@
 
 
 // Pseudo
+//
 // When using ::before and ::after you'll always need these three.
 
 @mixin pseudo($display: block, $pos: absolute, $content: '')
@@ -186,6 +195,7 @@
 
 
 // Ellipsis
+//
 // Truncates text and adds an ellipsis to represent overflow.
 //
 // Arguments:
@@ -219,6 +229,7 @@
 
 
 // Responsive image
+//
 // Keep images from scaling beyond the width of their parents.
 
 @mixin img-fluid
@@ -236,6 +247,7 @@
 
 
 // Retina image
+//
 // Set background-image and -size.
 
 @mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x)
@@ -250,6 +262,7 @@
 
 
 // Responsive ratio
+//
 // Create scalable elements (images/backgrounds) that maintain a ratio.
 // Usage:
 // div
@@ -264,3 +277,26 @@
       padding-top: $padding
   @else
     padding-top: $padding
+
+
+
+
+
+// Link underline
+//
+// Create an underline effect for links using background-image and
+// linear-gradient.
+//
+// Usage:
+// Adjust `$color`, `$size` and `$position` to obtain various effects,
+// including a different color, a thicker line or a strike-out effect.
+//
+// Example:
+// @include link-underline($global-body-color-selection, 8px, 90%)
+
+@mixin link-underline($color: currentColor, $size: 1px, $position: 100%)
+  text-decoration: none
+  background-image: linear-gradient(to bottom, $color, $color)
+  background-repeat: repeat-x
+  background-size: 1px $size
+  background-position: 0 $position

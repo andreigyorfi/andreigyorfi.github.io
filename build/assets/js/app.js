@@ -1,0 +1,1 @@
+$(".header").clone().appendTo("#headroom"),$("#headroom").headroom({offset:600,tolerance:{up:30,down:0}}),$(".mobile-menu-button").click(function(){$("body").addClass("menu-open"),$(".mobile-menu").fadeIn(250)}),$(".mobile-menu-close").click(function(){$("body").removeClass("menu-open"),$(".mobile-menu").fadeOut(250)});
