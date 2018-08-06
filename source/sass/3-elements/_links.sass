@@ -10,7 +10,7 @@ a
   color: inherit
   text-decoration: none
   outline: 0
-  transition: $global-transition-navigation
+  transition: color $global-transition-navigation
 
   &:hover,
   &:focus
@@ -26,18 +26,18 @@ a
 
 
 .link-underlined
-  @include link-underline(currentColor, 1px, 100%)
+  @include link-underline(currentColor, $global-border-width-link, 100%)
 
   &:hover,
   &:focus
-    @include link-underline(lighten($global-theme-color-dark, 66%), 1px, 100%)
+    @include link-underline(lighten($global-theme-color-dark, 66%), $global-border-width-link, 100%)
 
 
-.link-underlined-on-hover
+.link-underlined-hover
 
   &:hover,
   &:focus
-    @include link-underline(currentColor, 1px, 100%)
+    @include link-underline(currentColor, $global-border-width-link, 100%)
 
 
 
@@ -45,27 +45,50 @@ a
 
 // Icon variants
 
-.link-arrowed,
-.link-external
+.link-external,
+.link-arrowed-after,
+.link-arrowed-before
   position: relative
 
-  &:after
-    font-size: 0.8em
-    color: inherit
+  &:before
     position: absolute
-    bottom: 0
-    vertical-align: baseline
-    transform: translateX(50%)
-
-
-.link-arrowed
+    vertical-align: middle
+    left: 0
+    transition: transform $global-transition-navigation
 
   &:after
-    content: "\2192"
+    position: absolute
+    vertical-align: middle
+    right: -1.5em
+    transition: transform $global-transition-navigation
+
+  &:hover:before
+    transform: translateX(0.5em)
+
+  &:hover:after
+    transform: translateX(0.5em)
+
 
 
 .link-external
 
   &:after
     content: "\2197"
-    bottom: -0.2em
+
+  &:hover:after
+    transform: translate(0.5em, -0.5em)
+
+
+
+.link-arrowed-after
+
+  &:after
+    content: "\2192"
+
+
+
+.link-arrowed-before
+  padding-left: 1.7em
+
+  &:before
+    content: "\2192"

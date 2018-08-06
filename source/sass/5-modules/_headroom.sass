@@ -1,0 +1,38 @@
+//
+// Headroom.js
+//
+// See: https://wicky.nillia.ms/headroom.js/
+//
+
+#headroom
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 998
+
+  .header
+    background: $global-theme-color-light
+
+
+.headroom
+  will-change: transform
+  transition: $global-transition-navigation
+  transform: translateY(-100%)
+  opacity: 0
+
+
+.headroom--pinned
+  transform: translateY(0%)
+  opacity: 1
+
+
+.headroom--unpinned
+  transform: translateY(-100%)
+  opacity: 0
+
+
+.headroom--top
+  transform: translateY(-100%)
+  opacity: 0
+  

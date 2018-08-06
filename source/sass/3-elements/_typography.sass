@@ -46,27 +46,46 @@ html
   -webkit-font-smoothing: antialiased
   -webkit-text-size-adjust: 100%
 
+
 body
 
+
 p
+
 
 em
   font-style: italic
 
+
 b, strong
   font-weight: $global-font-weight-bold
 
+
 hr
   border-width: 0
-  border-top: $global-border-width solid currentColor
-  opacity: 0.1
+  border-top: $global-border-width-base solid currentColor
+  opacity: 0.15
   clear: both
   margin: $global-spacing-unit 0
   height: 0
 
-hr.spacer
-  border-top: 1px solid transparent
+  &.spacer
+    border-top: $global-border-width-base solid transparent
 
+  &.dash
+    display: inline-block
+    vertical-align: middle
+    width: $global-spacing-unit-huge
+    margin: 0
+    margin-left: $global-spacing-unit
+    opacity: 1
+
+
+// .dash-holder
+  margin-bottom: $global-spacing-unit-huge
+  transform: rotate(-90deg)
+  transform-origin: 0 0
+  line-height: 1
 
 
 
@@ -82,33 +101,41 @@ hr.spacer
 .h1, h1
   @include mq-font-size($global-font-sizes-h1)
 
+
 .huge,
 .h2, h2
   @include mq-font-size($global-font-sizes-h2)
+
 
 .large,
 .h3, h3
   @include mq-font-size($global-font-sizes-h3)
 
+
 .bigger,
 .h4, h4
   @include mq-font-size($global-font-sizes-h4)
 
+
 .big,
 .h5, h5
   @include mq-font-size($global-font-sizes-h5)
+
 
 .normal,
 .h6, h6,
 .body, body
   @include mq-font-size($global-font-sizes-h6-body)
 
+
 .button, button
   @include mq-font-size($global-font-sizes-button)
+
 
 .small, small,
 .caption
   @include mq-font-size($global-font-sizes-caption)
+
 
 .tiny,
 .overline
@@ -142,7 +169,6 @@ hr.spacer
 .button,
 .tiny, .overline
   text-transform: uppercase
-  letter-spacing: tracking(1)
 
 
 
@@ -178,6 +204,7 @@ hr.spacer
 
 
 .button
+  letter-spacing: tracking(1)
 
 
 .small, .caption
@@ -185,6 +212,8 @@ hr.spacer
 
 
 .tiny, .overline
+  letter-spacing: tracking(1.5)
+  // font-weight: 600
 
 
 
@@ -196,6 +225,7 @@ hr.spacer
 .list-inline
   padding-left: 0
   list-style: none
+
 
 .list-inline-item
   display: inline-block
