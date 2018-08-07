@@ -77,19 +77,19 @@
 // element. Great for images, buttons, or any other element.
 
 .border
-	border: $global-border-width solid $global-border-color !important
+	border: $global-border-width-base solid $global-border-color !important
 
 .border-top
-	border-top: $global-border-width solid $global-border-color !important
+	border-top: $global-border-width-base solid $global-border-color !important
 
 .border-right
-	border-right: $global-border-width solid $global-border-color !important
+	border-right: $global-border-width-base solid $global-border-color !important
 
 .border-bottom
-	border-bottom: $global-border-width solid $global-border-color !important
+	border-bottom: $global-border-width-base solid $global-border-color !important
 
 .border-left
-	border-left: $global-border-width solid $global-border-color !important
+	border-left: $global-border-width-base solid $global-border-color !important
 
 .border-0
 	border: 0 !important
@@ -646,3 +646,14 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 	// left: 50%
 	// transform: translateX(-50%)
 	// margin-left: -50vw // Use instead of the above transform?
+
+
+
+
+
+// Word break
+//
+// Use when you need to group words and make them wrap together on a new line.
+
+.wbr>span
+	display: inline-block

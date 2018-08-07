@@ -294,7 +294,7 @@
 // Example:
 // @include link-underline($global-body-color-selection, 8px, 90%)
 
-@mixin link-underline($color: currentColor, $size: 1px, $position: 100%)
+@mixin link-underline($color: currentColor, $size: $global-border-width-link, $position: 100%)
   text-decoration: none
   background-image: linear-gradient(to bottom, $color, $color)
   background-repeat: repeat-x

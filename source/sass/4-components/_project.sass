@@ -1,0 +1,46 @@
+//
+// Project
+//
+
+.project
+
+
+
+
+
+//
+// Next piece
+//
+
+.piece-next
+  // border-top: $global-border-width-base solid $global-border-color
+
+
+.piece-next-link
+
+  &:hover .piece-next-arrowed:after
+    @include mq(desktop)
+      transform: translateX(0.5em)
+
+
+.piece-next-arrowed
+  display: block
+  position: relative
+  padding-right: 1.5em
+
+  @include mq(desktop)
+    margin-bottom: 1.1em
+    padding-right: 0
+
+  &:after
+    display: block
+    position: absolute
+    vertical-align: middle
+    top: 0
+    right: 0
+    content: "\2192"
+    transition: transform $global-transition-navigation
+
+    @include mq(desktop)
+      top: auto
+      right: auto
