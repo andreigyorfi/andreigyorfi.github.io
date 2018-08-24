@@ -50,7 +50,7 @@
       transform: translateY(2px)
 
   span
-    background: $global-theme-color-dark
+    background-color: currentColor
     height: $global-border-width-base
     top: 50%
     left: 0
@@ -76,14 +76,12 @@
     position: static
 
     &:before
-      background: $global-theme-color-light
+      background-color: currentColor
       transform: rotate(45deg)
-      // transform-origin: 50% 50%
 
     &:after
-      background: $global-theme-color-light
+      background-color: currentColor
       transform: rotate(135deg)
-      // transform-origin: 50% 50%
 
 
 body.menu-open
@@ -96,14 +94,13 @@ body.menu-open
 .mobile-menu
   display: none
   position: fixed
-  background: $global-theme-color-dark
+  background-color: $global-theme-color-dark
+  color: $global-theme-color-light
   top: 0
   left: 0
   width: 100%
   height: 100%
   z-index: 999
-  // padding-left: $global-spacing-unit-small
-  // padding-right: $global-spacing-unit-small
 
 
 .mobile-menu-header
@@ -112,19 +109,12 @@ body.menu-open
   justify-content: space-between
   width: 100%
   height: $global-spacing-unit-large
-  // padding: 0 $global-spacing-unit-small
 
   @include mq(tablet)
     height: $global-spacing-unit-huge
-    // padding-left: $global-spacing-unit-large
-    // padding-right: $global-spacing-unit-large
-
-  // @include mq(desktop)
-  //   height: $global-spacing-unit-gigantic
 
 
 .mobile-menu-navigation
-  // position: absolute
   position: fixed
   bottom: 0
   margin: 0
@@ -138,10 +128,6 @@ body.menu-open
 
 
 .mobile-menu-link
-  // display: inline-block
-  // height: $global-spacing-unit-large
-  // line-height: $global-spacing-unit-large
-  color: $global-theme-color-light
 
   &:hover span,
   &:focus span,

@@ -64,8 +64,15 @@
 .bg-white
 	background-color: $global-color-white !important
 
+.bg-black
+	background-color: $global-color-black !important
+
 .bg-transparent
 	background-color: transparent !important
+
+@each $gradient, $value in $global-gradients
+	.bg-gradient-#{$gradient}
+		background: $value !important
 
 
 
@@ -657,3 +664,4 @@ $spacing-sizes: ("-none": 0, "-tiny": $global-spacing-unit-tiny, "-small": $glob
 
 .wbr>span
 	display: inline-block
+	// display: block

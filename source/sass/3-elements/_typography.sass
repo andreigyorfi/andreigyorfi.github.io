@@ -19,7 +19,7 @@
 
 // Remotely-hosted fonts
 
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500')
+// @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500')
 
 
 
@@ -39,18 +39,18 @@ html
   font-family: $global-font-family-base
   font-weight: $global-font-weight-base
 
-  color: $global-body-color-base
-  background-color: $global-body-background-color-base
-
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
   -webkit-text-size-adjust: 100%
 
 
 body
+  color: $global-body-color-base
+  background-color: $global-body-background-color-base
 
 
 p
+
 
 
 em
@@ -64,7 +64,7 @@ b, strong
 hr
   border-width: 0
   border-top: $global-border-width-base solid currentColor
-  opacity: 0.15
+  opacity: 0.2
   clear: both
   margin: $global-spacing-unit 0
   height: 0
@@ -78,14 +78,9 @@ hr
     width: $global-spacing-unit-huge
     margin: 0
     margin-left: $global-spacing-unit
+    margin-right: $global-spacing-unit
     opacity: 1
 
-
-// .dash-holder
-  margin-bottom: $global-spacing-unit-huge
-  transform: rotate(-90deg)
-  transform-origin: 0 0
-  line-height: 1
 
 
 
@@ -97,47 +92,55 @@ hr
 //
 // See: http://csswizardry.com/2016/02/managing-typography-on-large-apps/
 
-.gigantic,
-.h1, h1
+.typo-gigantic,
+.h1,
+h1
   @include mq-font-size($global-font-sizes-h1)
 
 
-.huge,
-.h2, h2
+.typo-huge,
+.h2,
+h2
   @include mq-font-size($global-font-sizes-h2)
 
 
-.large,
-.h3, h3
+.typo-large,
+.h3,
+h3
   @include mq-font-size($global-font-sizes-h3)
 
 
-.bigger,
-.h4, h4
+.typo-bigger,
+.h4,
+h4
   @include mq-font-size($global-font-sizes-h4)
 
 
-.big,
-.h5, h5
+.typo-big,
+.h5,
+h5
   @include mq-font-size($global-font-sizes-h5)
 
 
-.normal,
-.h6, h6,
-.body, body
+.typo-normal,
+.h6,
+h6,
+body
   @include mq-font-size($global-font-sizes-h6-body)
 
 
-.button, button
+.typo-button,
+button
   @include mq-font-size($global-font-sizes-button)
 
 
-.small, small,
-.caption
+.typo-small,
+.caption,
+small
   @include mq-font-size($global-font-sizes-caption)
 
 
-.tiny,
+.typo-tiny,
 .overline
   @include mq-font-size($global-font-sizes-overline)
 
@@ -147,73 +150,78 @@ hr
 
 // More opinionated text styles
 
-// Shared text styles
-
-.gigantic, .huge, .large, .bigger, .big,
-.h1, .h2, .h3, .h4, .h5,
-  word-wrap: break-word
-
-
-.gigantic, .huge,
-.h1, .h2
+.typo-gigantic,
+.h1
   font-weight: $global-font-weight-normal
+  word-wrap: break-word
+  letter-spacing: tracking(-2)
+  @include mq($until: tablet)
+    letter-spacing: tracking(-0.5)
 
 
-.large, .bigger, .big,
-.h3, .h4, .h5, .h6,
-.button,
-.tiny, .overline
+.typo-huge,
+.h2
+  font-weight: $global-font-weight-normal
+  word-wrap: break-word
+  letter-spacing: tracking(-2)
+  @include mq($until: tablet)
+    letter-spacing: tracking(-0.5)
+
+
+.typo-large,
+.h3
   font-weight: $global-font-weight-bold
-
-
-.button,
-.tiny, .overline
-  text-transform: uppercase
-
-
-
-
-
-// Individual text styles
-
-.gigantic, .h1
-  letter-spacing: tracking(-2)
-  @include mq($until: tablet)
-    letter-spacing: tracking(-0.5)
-
-
-.huge, .h2
-  letter-spacing: tracking(-2)
-  @include mq($until: tablet)
-    letter-spacing: tracking(-0.5)
-
-
-.large, .h3
+  word-wrap: break-word
   letter-spacing: tracking(-1)
   @include mq($until: tablet)
     letter-spacing: normal
 
 
-.bigger, .h4
+.typo-bigger,
+.h4
+  font-weight: $global-font-weight-bold
+  word-wrap: break-word
 
 
-.big, .h5
+.typo-big,
+.h5
+  font-weight: $global-font-weight-bold
+  word-wrap: break-word
 
 
-.normal, .h6, .body
+.typo-normal,
+.h6
+  font-weight: $global-font-weight-normal
 
 
-.button
+.typo-button
+  font-weight: $global-font-weight-bold
+  text-transform: uppercase
   letter-spacing: tracking(1)
 
 
-.small, .caption
+.typo-small,
+.caption
+  font-weight: $global-font-weight-normal
   letter-spacing: tracking(.5)
 
 
-.tiny, .overline
+.typo-tiny,
+.overline
+  font-weight: $global-font-weight-bold
+  text-transform: uppercase
   letter-spacing: tracking(1.5)
-  // font-weight: 600
+
+
+
+
+
+// Misc text styles
+
+.text-vertical
+  transform: rotate(-90deg)
+  transform-origin: 0 0
+  line-height: 1
 
 
 
