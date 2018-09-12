@@ -218,10 +218,20 @@ small
 
 // Misc text styles
 
-.text-vertical
+.typo-vertical
   transform: rotate(-90deg)
   transform-origin: 0 0
   line-height: 1
+
+
+.typo-number
+  display: inline
+  font-size: $global-font-size-base
+  line-height: $global-font-size-base
+  vertical-align: top
+  position: relative
+  top: 4px
+  margin-left: $global-spacing-unit-tiny
 
 
 
@@ -231,6 +241,7 @@ small
 
 .list-unstyled,
 .list-inline
+  margin-left: 0
   padding-left: 0
   list-style: none
 
