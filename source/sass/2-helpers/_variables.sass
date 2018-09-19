@@ -45,7 +45,19 @@ $global-color-black:                    #000
 // Colors
 
 $global-color-blue:                     rgba(50,50,255, 1)
+$global-color-yellow:                   #ffcb05
 $global-color-yellow-light:             #fff498
+
+
+
+
+
+// Gradients
+
+$global-gradient-100:                   linear-gradient(105deg, rgba(124,130,147,1) 20%, rgba(242,198,171,1) 120%)
+$global-gradient-200:                   linear-gradient(45deg, rgba(124,130,147,1) 20%, rgba(242,198,171,1) 120%)
+
+$global-gradients:                      ("100": $global-gradient-100, "200": $global-gradient-200)
 
 
 
@@ -139,9 +151,10 @@ $global-breakpoints:                    (mobile: 0, tablet: 740px, desktop: 980p
 // Grid containers
 // Define the maximum width of `.container` for different screen sizes.
 
-$global-container-max-widths:           (wide: 1366px)
-// $global-container-max-widths:           (tablet: 720px, desktop: 960px, wide: 1140px)
-// $global-container-max-widths:           1410px
+$global-container-max-widths:           (tablet: 720px, desktop: 960px, wide: 1140px)
+$global-container-fluid-max-width:      1440px
+// $global-container-fluid-max-width:      1410px
+// $global-container-fluid-max-width:      1366px
 
 
 
@@ -252,7 +265,9 @@ $global-font-sizes-overline:            10px
 
 // Borders
 
-$global-border-width-link:              1px
+// $global-border-width-link:              1px
+// $global-border-width-link:              .1em
+$global-border-width-link:              .05em
 $global-border-width-base:              1px
 $global-border-color:                   $global-color-gray-300
 
@@ -296,7 +311,7 @@ $global-box-shadow-large:               $global-box-shadow
 // .button
 //   transition: $global-transition
 
-$global-transition-base:                all 300ms ease-in-out
+$global-transition-base:                all .2s ease-in-out
 $global-transition-navigation:          .25s
 
 
@@ -309,4 +324,4 @@ $global-transition-navigation:          .25s
 
 // Navbar
 
-$global-navbar-height:                  70px
+// $global-navbar-height:                  70px

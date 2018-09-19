@@ -2,6 +2,38 @@
 // Hero
 //
 
-// See Evie
-
 .hero
+
+
+.hero-image-container
+  position: relative
+
+
+.hero-image-portrait-border
+  background-image: url('../img/gda-portrait-border.svg')
+
+  @include mq(tablet)
+    opacity: 0.66
+
+
+.hero-image-portrait-fill
+  background-image: url('../img/gda-portrait-fill.svg')
+
+
+.hero-image-portrait-border,
+.hero-image-portrait-fill
+  background-repeat: no-repeat
+  background-position: right top
+  background-size: contain
+  width: 100%
+  min-height: 951px
+  position: absolute
+  top: 0
+  right: 0
+
+
+.hero-text
+  margin-top: ($global-spacing-unit-huge * 7)
+
+  .typo-large
+    line-height: 1.25

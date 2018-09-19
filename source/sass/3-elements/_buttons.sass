@@ -2,16 +2,9 @@
 // Buttons
 //
 
-// See Bootstrap
-
-
-
-
-
 // Base styles
 
-// button,
-.button
+.btn
   display: inline-block
   text-align: center
   text-decoration: none
@@ -45,18 +38,18 @@
 
 // Style variants
 
-.button--primary
+.btn-primary
   color: $global-theme-color-light
   background-color: $global-theme-color-primary
   // box-shadow: $global-shadow
 
 
-.button--secondary
+.btn-secondary
   color: $global-theme-color-primary
   background-color: $global-theme-color-light
 
 
-.button--tertiary
+.btn-tertiary
 
 
 
@@ -64,11 +57,11 @@
 
 // Size variants
 
-.button--small
+.btn-small
   padding: $global-spacing-unit-tiny $global-spacing-unit-small
 
 
-.button--large
+.btn-large
   padding: $global-spacing-unit $global-spacing-unit-large
 
 
@@ -78,21 +71,21 @@
 // Ghost buttons
 // They have see-through backgrounds and are bordered.
 
-.button--ghost
+.btn-ghost
   background: none
   border: $global-border-width-base solid currentColor
   padding: ($global-spacing-unit-small - $global-border-width-base) ($global-spacing-unit - $global-border-width-base)
 
-  &.button--small
+  &.btn-small
     padding: ($global-spacing-unit-tiny - $global-border-width-base) ($global-spacing-unit-small - $global-border-width-base)
 
-  &.button--large
+  &.btn-large
     padding: ($global-spacing-unit - $global-border-width-base) ($global-spacing-unit-large - $global-border-width-base)
 
-  &.button--primary
+  &.btn-primary
     color: $global-theme-color-primary
 
-  &.button--secondary
+  &.btn-secondary
     color: $global-theme-color-light
 
-  &.button--tertiary
+  &.btn-tertiary

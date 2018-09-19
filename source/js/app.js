@@ -21,7 +21,7 @@
 $(".header").clone().appendTo("#headroom");
 
 $("#headroom").headroom({
-    offset: 600,
+    offset: 1400,
     tolerance: {
         up: 30,
         down: 0
@@ -61,10 +61,10 @@ particlesJS('particles-js',
   {
     "particles": {
       "number": {
-        "value": 80,
+        "value": 10,
         "density": {
           "enable": true,
-          "value_area": 800
+          "value_area": 125
         }
       },
       "color": {
@@ -109,7 +109,7 @@ particlesJS('particles-js',
         "enable": true,
         "distance": 150,
         "color": "#ffffff",
-        "opacity": 0.75,
+        "opacity": 1,
         "width": 1
       },
       "move": {
@@ -127,7 +127,7 @@ particlesJS('particles-js',
       }
     },
     "interactivity": {
-      "detect_on": "window",
+      "detect_on": "canvas",
       "events": {
         "onhover": {
           "enable": true,
