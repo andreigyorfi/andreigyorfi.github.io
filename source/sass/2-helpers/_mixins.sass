@@ -242,6 +242,12 @@
 
   vertical-align: middle
 
+  // If the image is placed inside an element which has display: flex, then the
+  // image will tend to stretch, because align-self default value is stretch.
+  // To fix this, set align-self to center.
+
+  align-self: center
+
 
 
 

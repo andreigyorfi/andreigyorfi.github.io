@@ -1,4 +1,9 @@
+//
 // Lists
+//
+
+.list
+
 
 .list-unstyled,
 .list-inline
@@ -7,8 +12,14 @@
   list-style: none
 
 
-.list-inline-item
-  display: inline-block
+.list-inline
+  li
+    display: inline-block
+    &:not(:last-child)
+      margin-right: $global-spacing-unit
 
-  &:not(:last-child)
-    margin-right: $global-spacing-unit
+
+.list,
+.list-unstyled
+  li
+    margin-bottom: $global-spacing-unit-small
