@@ -39,9 +39,16 @@ html
   font-family: $global-font-family-base
   font-weight: $global-font-weight-base
 
+  // Make type rendering look crisper
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
+
+  // Disable auto-enlargement of small text in Safari
   -webkit-text-size-adjust: 100%
+  // text-size-adjust: 100%
+
+  // Enable kerning and optional ligatures
+  text-rendering: optimizeLegibility
 
 
 body
